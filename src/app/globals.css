@@ -2494,6 +2494,18 @@ a {
 
 
 /* —— Rooms index —— */
+.rooms-page {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding: 0 var(--page-gutter) 4rem;
+}
+
+@media (min-width: 768px) {
+  .rooms-page {
+    padding-bottom: 5.5rem;
+  }
+}
+
 .rooms-index {
   display: flex;
   flex-direction: column;
@@ -2502,20 +2514,20 @@ a {
 
 @media (min-width: 768px) {
   .rooms-index {
-    gap: 4.5rem;
+    gap: 5rem;
   }
 }
 
 .rooms-index__card {
   display: grid;
-  gap: 1.35rem;
+  gap: 1.5rem;
   align-items: center;
 }
 
 @media (min-width: 768px) {
   .rooms-index__card {
     grid-template-columns: 1.05fr 0.95fr;
-    gap: 3rem;
+    gap: 3.25rem;
   }
 
   .rooms-index__card--flip .rooms-index__media {
@@ -2528,6 +2540,7 @@ a {
   aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: 1rem;
+  background: #eef0f2;
   box-shadow:
     0 0 22px 3px rgba(232, 239, 238, 0.4),
     0 18px 40px -32px rgba(26, 39, 28, 0.4);
@@ -2540,53 +2553,106 @@ a {
   }
 }
 
+.rooms-index__img,
+.rooms-index__media > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+
+.rooms-index__media:hover .rooms-index__img,
+.rooms-index__media:hover > img {
+  transform: scale(1.03);
+}
+
+.rooms-index__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 28rem;
+  padding-block: 0.35rem;
+}
+
+.rooms-index__eyebrow {
+  margin: 0;
+  font-family: var(--font-body), "Manrope", system-ui, sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--pine) 55%, var(--muted));
+}
+
 .rooms-index__name {
-  font-family: var(--font-display), "Times New Roman", Georgia, serif;
-  font-size: clamp(1.85rem, 3vw, 2.5rem);
+  margin: 0.65rem 0 0;
+  font-family: var(--font-display), "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.95rem, 3.4vw, 2.65rem);
   font-weight: 500;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+  line-height: 1.12;
   color: var(--pine);
+  text-wrap: balance;
 }
 
 .rooms-index__short {
-  margin-top: 0.75rem;
+  margin: 0.9rem 0 0;
+  font-size: 1.02rem;
   line-height: 1.7;
-  color: var(--muted);
+  color: #5b6573;
 }
 
 .rooms-index__facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem 1.25rem;
-  margin-top: 1.5rem;
+  gap: 1rem 1.35rem;
+  width: 100%;
+  margin: 1.65rem 0 0;
+  padding: 1.15rem 0 0;
+  border-top: 1px solid rgba(26, 39, 28, 0.1);
 }
 
 .rooms-index__facts dt {
-  font-size: 0.65rem;
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--lichen);
+  color: color-mix(in oklab, var(--pine) 50%, var(--muted));
 }
 
 .rooms-index__facts dd {
-  margin-top: 0.2rem;
+  margin: 0.3rem 0 0;
   font-size: 0.95rem;
+  line-height: 1.4;
   color: var(--pine);
 }
 
 .rooms-index__avail {
-  margin-top: 1.15rem;
+  margin: 1.15rem 0 0;
   font-size: 0.9rem;
   line-height: 1.55;
-  color: var(--muted);
+  color: #64748b;
 }
 
 .rooms-index__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1rem 1.5rem;
-  margin-top: 1.75rem;
+  gap: 1rem 1.35rem;
+  width: 100%;
+  margin-top: 1.85rem;
+}
+
+.rooms-index__book {
+  min-width: 11rem;
+}
+
+.rooms-index__empty {
+  color: var(--muted);
 }
 
 /* —— Room detail —— */

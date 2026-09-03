@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ButtonLink } from "@/components/ButtonLink";
 import { CtaBand, PageIntro, Section } from "@/components/PageShell";
 import { formatInr, rooms } from "@/lib/site";
+import "../booking/booking-page.css";
 
 export const metadata: Metadata = {
   title: "Rooms & Accommodation",
@@ -40,6 +40,7 @@ export default function RoomsPage() {
                 />
               </Link>
               <div className="rooms-index__body">
+                <p className="rooms-index__eyebrow">Stay</p>
                 <h2 className="rooms-index__name">{room.name}</h2>
                 <p className="rooms-index__short">{room.short}</p>
                 <dl className="rooms-index__facts">
@@ -62,9 +63,12 @@ export default function RoomsPage() {
                 </dl>
                 <p className="rooms-index__avail">{room.availability}</p>
                 <div className="rooms-index__actions">
-                  <ButtonLink href={`/booking/search?room=${room.slug}`}>
+                  <Link
+                    href={`/booking/search?room=${room.slug}`}
+                    className="booking-btn rooms-index__book"
+                  >
                     Book Now
-                  </ButtonLink>
+                  </Link>
                   <Link href={`/rooms/${room.slug}`} className="link-arrow">
                     View full details
                   </Link>
