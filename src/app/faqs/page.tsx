@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FaqList } from "@/components/FaqList";
 import { PageIntro, Section } from "@/components/PageShell";
 import { faqs } from "@/lib/site";
 
@@ -16,24 +17,7 @@ export default function FaqsPage() {
         lead="Answers to the questions guests ask most before arrival."
       />
       <Section className="pt-0">
-        <div className="mx-auto max-w-3xl space-y-6">
-          {faqs.map((item) => (
-            <details
-              key={item.q}
-              className="group border-t border-line pt-4 open:pb-2"
-            >
-              <summary className="cursor-pointer list-none font-display text-xl text-pine marker:content-none">
-                <span className="flex items-start justify-between gap-4">
-                  {item.q}
-                  <span className="text-lichen transition group-open:rotate-45">
-                    +
-                  </span>
-                </span>
-              </summary>
-              <p className="mt-3 text-muted">{item.a}</p>
-            </details>
-          ))}
-        </div>
+        <FaqList items={faqs} className="faq-list--page" />
       </Section>
     </>
   );

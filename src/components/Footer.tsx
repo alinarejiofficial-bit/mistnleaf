@@ -1,7 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Logo } from "@/components/Logo";
+import { media } from "@/lib/media";
 import { site } from "@/lib/site";
 
 const explore = [
@@ -15,7 +18,6 @@ const explore = [
 
 const plan = [
   { href: "/offers", label: "Offers" },
-  { href: "/dining", label: "Dining" },
   { href: "/things-to-do", label: "Things to Do" },
   { href: "/explore", label: "Site guide" },
   { href: "/faqs", label: "FAQs" },
@@ -30,79 +32,78 @@ const policies = [
   { href: "/staff/login", label: "Staff login" },
 ];
 
+function FooterColumn({
+  title,
+  links,
+}: {
+  title: string;
+  links: { href: string; label: string }[];
+}) {
+  return (
+    <div className="site-footer__col">
+      <p className="site-footer__heading">{title}</p>
+      <nav className="site-footer__nav" aria-label={title}>
+        {links.map((link) => (
+          <Link key={link.href} href={link.href} className="site-footer__link">
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+    </div>
+  );
+}
+
 export function Footer() {
   const pathname = usePathname();
   if (pathname.startsWith("/staff")) return null;
 
   return (
     <footer className="site-footer">
+      <div className="site-footer__media" aria-hidden>
+        <Image
+          src={media.locationHills}
+          alt=""
+          fill
+          className="site-footer__bg object-cover"
+          sizes="100vw"
+        />
+      </div>
       <div className="site-footer__inner">
-        <div>
-          <p className="font-display text-3xl tracking-tight">{site.name}</p>
-          <p className="mt-4 max-w-sm text-[0.95rem] leading-relaxed text-fog/70">
-            {site.tagline}
-          </p>
-          <div className="mt-8 space-y-1.5 text-sm text-fog/65">
-            <p>{site.address.line1}</p>
-            <p>{site.address.line2}</p>
-            <p className="pt-3">
-              <a href={`mailto:${site.email}`} className="hover:text-fog">
-                {site.email}
-              </a>
+        <div className="site-footer__brand">
+          <Logo size="footer" href="/" className="site-footer__logo" />
+          <p className="site-footer__tagline">{site.tagline}</p>
+          <p className="site-footer__about">{site.description}</p>
+        </div>
+
+        <div className="site-footer__col">
+          <p className="site-footer__heading">Contact</p>
+          <address className="site-footer__contact not-italic">
+            <p className="site-footer__contact-line">
+              <span className="site-footer__contact-label">Address</span>
+              {site.address.line1}
+              <br />
+              {site.address.line2}
             </p>
-            <p>
-              <a
-                href={`tel:${site.phone.replace(/\s/g, "")}`}
-                className="hover:text-fog"
-              >
-                {site.phone}
-              </a>
+            <p className="site-footer__contact-line">
+              <span className="site-footer__contact-label">Email</span>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
             </p>
-          </div>
+            <p className="site-footer__contact-line">
+              <span className="site-footer__contact-label">Phone</span>
+              <a href={`tel:${site.phone.replace(/\s/g, "")}`}>{site.phone}</a>
+            </p>
+          </address>
         </div>
 
-        <div>
-          <p className="text-[0.68rem] uppercase tracking-[0.2em] text-fog/45">
-            Explore
-          </p>
-          <nav className="mt-4 flex flex-col gap-2.5 text-sm text-fog/75">
-            {explore.map((link) => (
-              <Link key={link.href} href={link.href} className="hover:text-fog">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        <div>
-          <p className="text-[0.68rem] uppercase tracking-[0.2em] text-fog/45">
-            Plan
-          </p>
-          <nav className="mt-4 flex flex-col gap-2.5 text-sm text-fog/75">
-            {plan.map((link) => (
-              <Link key={link.href} href={link.href} className="hover:text-fog">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        <div>
-          <p className="text-[0.68rem] uppercase tracking-[0.2em] text-fog/45">
-            Policies
-          </p>
-          <nav className="mt-4 flex flex-col gap-2.5 text-sm text-fog/75">
-            {policies.map((link) => (
-              <Link key={link.href} href={link.href} className="hover:text-fog">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+        <FooterColumn title="Explore" links={explore} />
+        <FooterColumn title="Plan" links={plan} />
+        <FooterColumn title="Policies" links={policies} />
       </div>
 
       <div className="site-footer__bar">
-        © {new Date().getFullYear()} {site.name}. Nature in every breath.
+        <p>
+          © {new Date().getFullYear()} {site.name}. Nature in every breath.
+        </p>
       </div>
     </footer>
   );

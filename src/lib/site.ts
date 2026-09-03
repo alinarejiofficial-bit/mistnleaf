@@ -2,10 +2,10 @@ import { media } from "@/lib/media";
 
 export const site = {
   name: "Mistnleaf",
-  tagline: "A quiet stay among the mist and trees",
+  tagline: "Nature in Every Breath",
   description:
-    "Mistnleaf is a forest retreat where slow mornings, soft light, and thoughtful hospitality meet.",
-  email: "stay@mistnleaf.com",
+    "Mistnleaf Staycation is a forest retreat where slow mornings, soft light, and thoughtful hospitality meet.",
+  email: "info@mistnleaf.com",
   phone: "+91 98765 43210",
   address: {
     line1: "Hill Road, Near Whispering Pines",

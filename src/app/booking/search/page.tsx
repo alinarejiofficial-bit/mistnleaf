@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { BookingStepper } from "@/components/booking/BookingStepper";
-import {
-  fieldClass,
-  primaryBtnClass,
-} from "@/components/booking/BookingUi";
-import { PageIntro, Section } from "@/components/PageShell";
 import { param } from "@/lib/booking";
 import { goToAvailability } from "../actions";
+import "./booking-page.css";
 
 export const metadata: Metadata = {
   title: "Search · Booking",
@@ -24,63 +20,66 @@ export default async function BookingSearchPage({ searchParams }: Props) {
   return (
     <>
       <BookingStepper current="search" />
-      <PageIntro
-        eyebrow="Step 1"
-        title="Search"
-        lead="Choose check-in, check-out, and guests — then view rooms, add packages, see the price, enter details, and pay."
-      />
-      <Section className="pt-0">
-        <form
-          action={goToAvailability}
-          className="mx-auto grid max-w-xl gap-4"
-        >
-          {room ? <input type="hidden" name="room" value={room} /> : null}
-          {error === "dates" ? (
-            <p className="border border-line bg-mist px-4 py-3 text-sm text-pine">
-              Please select valid check-in and check-out dates.
-            </p>
-          ) : null}
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="block text-sm text-muted">
-              Check-in
+      <section className="booking-page">
+        <header className="booking-page__intro">
+          <p className="eyebrow">Step 1</p>
+          <h1 className="booking-page__title">Search</h1>
+          <p className="booking-page__lead">
+            Choose check-in, check-out, and guests — then continue to rooms and
+            payment.
+          </p>
+        </header>
+
+        <section className="booking-page__body">
+          <form action={goToAvailability} className="booking-panel">
+            {room ? <input type="hidden" name="room" value={room} /> : null}
+            {error === "dates" ? (
+              <p className="booking-panel__alert" role="alert">
+                Please select valid check-in and check-out dates.
+              </p>
+            ) : null}
+            <div className="booking-panel__row">
+              <label className="booking-field">
+                <span className="booking-field__label">Check-in</span>
+                <input
+                  type="date"
+                  name="checkIn"
+                  required
+                  min={today}
+                  defaultValue={param(params, "checkIn")}
+                  className="booking-field__input"
+                />
+              </label>
+              <label className="booking-field">
+                <span className="booking-field__label">Check-out</span>
+                <input
+                  type="date"
+                  name="checkOut"
+                  required
+                  min={today}
+                  defaultValue={param(params, "checkOut")}
+                  className="booking-field__input"
+                />
+              </label>
+            </div>
+            <label className="booking-field">
+              <span className="booking-field__label">Guests</span>
               <input
-                type="date"
-                name="checkIn"
+                type="number"
+                name="guests"
+                min={1}
+                max={6}
                 required
-                min={today}
-                defaultValue={param(params, "checkIn")}
-                className={fieldClass}
+                defaultValue={param(params, "guests", "2")}
+                className="booking-field__input"
               />
             </label>
-            <label className="block text-sm text-muted">
-              Check-out
-              <input
-                type="date"
-                name="checkOut"
-                required
-                min={today}
-                defaultValue={param(params, "checkOut")}
-                className={fieldClass}
-              />
-            </label>
-          </div>
-          <label className="block text-sm text-muted">
-            Guests
-            <input
-              type="number"
-              name="guests"
-              min={1}
-              max={6}
-              required
-              defaultValue={param(params, "guests", "2")}
-              className={fieldClass}
-            />
-          </label>
-          <button type="submit" className={primaryBtnClass}>
-            Check availability
-          </button>
-        </form>
-      </Section>
+            <button type="submit" className="booking-panel__submit">
+              Check availability
+            </button>
+          </form>
+        </section>
+      </section>
     </>
   );
 }

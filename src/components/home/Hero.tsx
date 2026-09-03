@@ -27,18 +27,21 @@ export function Hero() {
 
       <div className="hero-content">
         <div className="hero-copy">
-          <p className="hero-eyebrow">A forest retreat</p>
-          <p className="hero-brand">{site.name}</p>
-          <h1 className="hero-headline">Nature in Every Breath</h1>
+          <p className="hero-eyebrow">Staycation</p>
+          <h1 className="hero-title">{site.tagline}</h1>
           <p className="hero-lead">
-            A quiet forest retreat where mist, leaf, and soft light set the
-            pace.
+            A forest retreat where slow mornings, soft light, and thoughtful
+            hospitality meet.
           </p>
           <div className="hero-actions">
-            <ButtonLink href="/booking/search" className="rounded-xl">
+            <ButtonLink href="/booking/search" className="hero-cta rounded-xl">
               Book your stay
             </ButtonLink>
-            <ButtonLink href="/rooms" variant="secondary" className="rounded-xl">
+            <ButtonLink
+              href="/rooms"
+              variant="secondary"
+              className="hero-cta hero-cta--ghost rounded-xl"
+            >
               Explore rooms
             </ButtonLink>
           </div>

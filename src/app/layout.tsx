@@ -20,7 +20,7 @@ const body = Manrope({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} · Forest Retreat`,
+    default: `${site.name} · Staycation`,
     template: `%s · ${site.name}`,
   },
   description: site.description,

@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaqList } from "@/components/FaqList";
 import { Hero } from "@/components/home/Hero";
 import { CtaBand, Section } from "@/components/PageShell";
 import { media } from "@/lib/media";
 import {
   amenities,
   experiences,
+  faqs,
   formatInr,
   galleryImages,
   offers,
@@ -101,14 +103,14 @@ export default function HomePage() {
             href="/rooms"
             linkLabel="View all rooms"
           />
-          <div className="grid gap-8 md:grid-cols-3 md:gap-7">
+          <div className="featured-rooms-grid" data-count={rooms.length}>
             {rooms.map((room) => (
               <Link
                 key={room.slug}
                 href={`/rooms/${room.slug}`}
-                className="group"
+                className="featured-rooms-card group"
               >
-                <div className="img-frame relative aspect-[5/4] rounded-xl sm:aspect-[4/5] sm:rounded-2xl">
+                <div className="img-frame featured-rooms-card__media">
                   <Image
                     src={room.image}
                     alt={room.name}
@@ -117,16 +119,13 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
-                <div className="mt-4 sm:mt-5">
-                  <h3 className="font-display text-[1.45rem] text-pine transition group-hover:text-pine-soft sm:text-2xl">
-                    {room.name}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    {room.short}
-                  </p>
-                  <p className="mt-3 text-[0.8rem] uppercase tracking-[0.12em] text-leaf sm:mt-4">
+                <div className="featured-rooms-card__body">
+                  <h3 className="featured-rooms-card__title">{room.name}</h3>
+                  <p className="featured-rooms-card__copy">{room.short}</p>
+                  <p className="featured-rooms-card__price">
                     From {formatInr(room.price)} / night
                   </p>
+                  <span className="featured-rooms-card__cta">View room</span>
                 </div>
               </Link>
             ))}
@@ -273,31 +272,23 @@ export default function HomePage() {
             href="/offers"
             linkLabel="View offers"
           />
-          <div className="border-y border-line">
+          <div className="offers-list">
             {offers.map((offer, index) => (
               <article key={offer.title} className="offer-panel">
                 <p className="offer-index" aria-hidden>
                   {String(index + 1).padStart(2, "0")}
                 </p>
-                <div className="min-w-0 max-w-xl">
-                  <h3 className="font-display text-2xl text-pine md:text-[2rem]">
-                    {offer.title}
-                  </h3>
-                  <p className="mt-3 leading-relaxed text-muted">
-                    {offer.detail}
-                  </p>
-                  <p className="mt-3 text-[0.72rem] uppercase tracking-[0.16em] text-lichen">
-                    {offer.valid}
-                  </p>
+                <div className="offer-panel__copy">
+                  <h3 className="offer-panel__title">{offer.title}</h3>
+                  <p className="offer-panel__detail">{offer.detail}</p>
+                  <p className="offer-panel__valid">{offer.valid}</p>
                 </div>
-                <div className="md:min-w-[9.5rem] md:text-right">
-                  <p className="text-[0.68rem] uppercase tracking-[0.16em] text-muted">
-                    From
-                  </p>
-                  <p className="mt-1 font-display text-3xl text-pine">
+                <div className="offer-panel__price">
+                  <p className="offer-panel__from">From</p>
+                  <p className="offer-panel__amount">
                     {formatInr(offer.priceFrom)}
                   </p>
-                  <Link href="/booking/search" className="link-arrow mt-4">
+                  <Link href="/booking/search" className="offer-panel__cta">
                     Book package
                   </Link>
                 </div>
@@ -317,41 +308,33 @@ export default function HomePage() {
             sizes="100vw"
           />
         </div>
-        <div className="location-band__content mx-auto flex min-h-[24rem] max-w-6xl flex-col items-center justify-end px-5 py-12 text-center sm:px-6 sm:py-16 md:min-h-[34rem] md:py-24">
-          <div className="max-w-xl text-fog">
-            <p className="text-[0.7rem] uppercase tracking-[0.22em] text-fog/60">
-              Location
-            </p>
-            <h2 className="mt-3 font-display text-balance text-[1.85rem] sm:mt-4 sm:text-3xl md:text-[2.75rem]">
-              Above the valley in Munnar
-            </h2>
-            <p className="mt-3 leading-relaxed text-fog/80 sm:mt-4">
+        <div className="location-band__content">
+          <div className="location-band__inner">
+            <p className="location-band__eyebrow">Location</p>
+            <h2 className="location-band__title">Above the valley in Munnar</h2>
+            <p className="location-band__lead">
               Nestled near Whispering Pines — close enough to town, far enough
-              for quiet. Private transfers can be arranged when you book.
+              for quiet.
             </p>
-            <div className="mt-6 grid w-full gap-4 text-sm text-fog/85 sm:mt-7 sm:grid-cols-2 sm:gap-x-8">
-              <p className="text-center sm:text-left">
-                <span className="block text-[0.65rem] uppercase tracking-[0.16em] text-fog/50">
-                  Address
-                </span>
-                {site.address.line1}
-                <br />
-                {site.address.line2}
-              </p>
-              <p className="text-center sm:text-left">
-                <span className="block text-[0.65rem] uppercase tracking-[0.16em] text-fog/50">
-                  Airport
-                </span>
-                ~3.5–4 hrs from COK
-              </p>
+            <div className="location-band__meta">
+              <div className="location-band__meta-item">
+                <span className="location-band__meta-label">Address</span>
+                <p className="location-band__meta-value">
+                  {site.address.line1}
+                  <br />
+                  {site.address.line2}
+                </p>
+              </div>
+              <div className="location-band__meta-item">
+                <span className="location-band__meta-label">Airport</span>
+                <p className="location-band__meta-value">~3.5–4 hrs from COK</p>
+              </div>
             </div>
-            <Link
-              href="/location"
-              className="mt-7 inline-flex items-center gap-2 text-sm tracking-wide text-fog transition hover:gap-3 sm:mt-8"
-            >
-              Get directions
-              <span aria-hidden>→</span>
-            </Link>
+            <div className="location-band__actions">
+              <Link href="/location" className="location-band__cta">
+                Get directions
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -399,6 +382,19 @@ export default function HomePage() {
               </blockquote>
             ))}
           </div>
+        </Section>
+      </section>
+
+      <section className="faq-band">
+        <Section>
+          <SectionHeading
+            eyebrow="Help"
+            title="Frequently asked questions"
+            lead="Quick answers before you arrive — check-in, transfers, dining, and more."
+            href="/faqs"
+            linkLabel="View all FAQs"
+          />
+          <FaqList items={faqs.slice(0, 4)} className="faq-list--home" />
         </Section>
       </section>
 

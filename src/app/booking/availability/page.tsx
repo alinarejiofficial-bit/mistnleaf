@@ -16,6 +16,7 @@ import {
   toQuery,
 } from "@/lib/booking";
 import { goToSelect } from "../actions";
+import "../booking-page.css";
 
 export const metadata: Metadata = {
   title: "Availability · Booking",

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/ButtonLink";
+import { Logo } from "@/components/Logo";
 import { CtaBand, Section } from "@/components/PageShell";
 import { media } from "@/lib/media";
 import { site } from "@/lib/site";
@@ -47,7 +48,7 @@ export default function AboutPage() {
         </div>
         <div className="about-page-hero__content">
           <p className="about-page-hero__eyebrow">Our story</p>
-          <p className="about-page-hero__brand">{site.name}</p>
+          <Logo size="about" variant="light" href={null} priority className="about-page-hero__logo" />
           <h1 className="about-page-hero__title">
             Soft light, quiet rooms, forest air
           </h1>

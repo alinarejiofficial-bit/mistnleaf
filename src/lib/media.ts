@@ -4,6 +4,10 @@ const u = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const media = {
+  /** Brand logo lockup (transparent PNG) */
+  logo: "/images/mistnleaf-logo.png",
+  /** Light logo for dark backgrounds */
+  logoLight: "/images/mistnleaf-logo-light.png",
   hero: u("photo-1470071459604-3b5ec3a7fe05", 2000),
   /** Glass hillside lodge above misty mountain valleys */
   aboutLodge: "/images/about-lodge.png",

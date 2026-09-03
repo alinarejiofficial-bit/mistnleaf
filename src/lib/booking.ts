@@ -2,14 +2,34 @@ import { formatInr, getRoom, rooms, type Room } from "@/lib/site";
 import { db } from "@/lib/store/db";
 
 export const bookingSteps = [
-  { key: "search", label: "Search", href: "/booking/search" },
-  { key: "availability", label: "Availability", href: "/booking/availability" },
-  { key: "select", label: "Room Selection", href: "/booking/select" },
-  { key: "addons", label: "Add-ons", href: "/booking/add-ons" },
-  { key: "guest", label: "Guest Details", href: "/booking/guest" },
-  { key: "summary", label: "Price", href: "/booking/summary" },
-  { key: "payment", label: "Payment", href: "/booking/payment" },
-  { key: "confirmation", label: "Confirmation", href: "/booking/confirmation" },
+  { key: "search", label: "Search", shortLabel: "Search", href: "/booking/search" },
+  {
+    key: "availability",
+    label: "Availability",
+    shortLabel: "Dates",
+    href: "/booking/availability",
+  },
+  {
+    key: "select",
+    label: "Room Selection",
+    shortLabel: "Room",
+    href: "/booking/select",
+  },
+  { key: "addons", label: "Add-ons", shortLabel: "Add-ons", href: "/booking/add-ons" },
+  {
+    key: "guest",
+    label: "Guest Details",
+    shortLabel: "Guest",
+    href: "/booking/guest",
+  },
+  { key: "summary", label: "Price", shortLabel: "Price", href: "/booking/summary" },
+  { key: "payment", label: "Payment", shortLabel: "Pay", href: "/booking/payment" },
+  {
+    key: "confirmation",
+    label: "Confirmation",
+    shortLabel: "Done",
+    href: "/booking/confirmation",
+  },
 ] as const;
 
 export type BookingStepKey = (typeof bookingSteps)[number]["key"];

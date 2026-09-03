@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CtaBand, PageIntro, Section } from "@/components/PageShell";
+import { CtaBand } from "@/components/PageShell";
 import { formatInr, offers } from "@/lib/site";
+import "./offers-page.css";
 
 export const metadata: Metadata = {
   title: "Offers & Packages",
@@ -11,42 +12,42 @@ export const metadata: Metadata = {
 export default function OffersPage() {
   return (
     <>
-      <PageIntro
-        eyebrow="Packages"
-        title="Offers & Packages"
-        lead="Thoughtful combinations of stay, meals, and experiences — without the clutter."
-      />
-      <Section className="pt-0">
-        <div className="border-b border-line">
-          {offers.map((offer, index) => (
-            <article key={offer.title} className="offer-panel">
-              <p className="offer-index" aria-hidden>
-                {String(index + 1).padStart(2, "0")}
-              </p>
-              <div className="max-w-xl">
-                <h2 className="font-display text-2xl text-pine md:text-[2rem]">
-                  {offer.title}
-                </h2>
-                <p className="mt-3 leading-relaxed text-muted">{offer.detail}</p>
-                <p className="mt-3 text-[0.72rem] uppercase tracking-[0.16em] text-lichen">
-                  {offer.valid}
+      <section className="offers-page">
+        <header className="offers-page__intro">
+          <p className="eyebrow">Packages</p>
+          <h1 className="offers-page__title">Offers &amp; Packages</h1>
+          <p className="offers-page__lead">
+            Thoughtful combinations of stay, meals, and experiences — without
+            the clutter.
+          </p>
+        </header>
+
+        <section className="offers-page__body">
+          <div className="offers-list offers-list--page">
+            {offers.map((offer, index) => (
+              <article key={offer.title} className="offer-panel">
+                <p className="offer-index" aria-hidden>
+                  {String(index + 1).padStart(2, "0")}
                 </p>
-              </div>
-              <div className="md:min-w-[9.5rem] md:text-right">
-                <p className="text-[0.68rem] uppercase tracking-[0.16em] text-muted">
-                  From
-                </p>
-                <p className="mt-1 font-display text-3xl text-pine">
-                  {formatInr(offer.priceFrom)}
-                </p>
-                <Link href="/booking/search" className="link-arrow mt-4">
-                  Enquire to book
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </Section>
+                <div className="offer-panel__copy">
+                  <h2 className="offer-panel__title">{offer.title}</h2>
+                  <p className="offer-panel__detail">{offer.detail}</p>
+                  <p className="offer-panel__valid">{offer.valid}</p>
+                </div>
+                <div className="offer-panel__price">
+                  <p className="offer-panel__from">From</p>
+                  <p className="offer-panel__amount">
+                    {formatInr(offer.priceFrom)}
+                  </p>
+                  <Link href="/booking/search" className="offer-panel__cta">
+                    Book package
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </section>
       <CtaBand />
     </>
   );

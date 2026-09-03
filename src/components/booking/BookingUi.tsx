@@ -118,8 +118,7 @@ export function BookingHiddens({
 
 export const fieldClass = "input-field";
 
-export const primaryBtnClass =
-  "inline-flex min-h-11 items-center justify-center bg-pine px-7 py-3 text-[0.8rem] font-medium uppercase tracking-[0.08em] text-fog transition hover:bg-pine-soft disabled:opacity-50";
+export const primaryBtnClass = "booking-btn";
 
 export const ghostBtnClass =
   "inline-flex min-h-11 items-center justify-center border border-line px-7 py-3 text-[0.8rem] font-medium uppercase tracking-[0.08em] text-pine transition hover:bg-sand-cool/60";

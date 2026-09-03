@@ -33,56 +33,52 @@ export function EnquiryForm() {
 
   return (
     <form
-      className="space-y-4"
+      className="contact-form"
       onSubmit={handleSubmit(async (values) => {
         const data = new FormData();
         Object.entries(values).forEach(([key, value]) => data.set(key, value));
         await submitEnquiryAction(data);
       })}
     >
-      <label className="block text-sm text-muted">
-        Name *
+      <label className="contact-form__field">
+        <span className="contact-form__label">Name</span>
         <input
           {...register("name")}
-          className="mt-1 w-full border border-line bg-fog px-3 py-2 text-pine outline-none focus:border-lichen"
+          autoComplete="name"
+          placeholder="Your name"
         />
         {errors.name ? (
-          <span className="mt-1 block text-xs text-pine">{errors.name.message}</span>
+          <span className="contact-form__error">{errors.name.message}</span>
         ) : null}
       </label>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm text-muted">
-          Email *
+      <div className="contact-form__row">
+        <label className="contact-form__field">
+          <span className="contact-form__label">Email</span>
           <input
             type="email"
             {...register("email")}
-            className="mt-1 w-full border border-line bg-fog px-3 py-2 text-pine outline-none focus:border-lichen"
+            autoComplete="email"
+            placeholder="you@email.com"
           />
           {errors.email ? (
-            <span className="mt-1 block text-xs text-pine">
-              {errors.email.message}
-            </span>
+            <span className="contact-form__error">{errors.email.message}</span>
           ) : null}
         </label>
-        <label className="block text-sm text-muted">
-          Phone *
+        <label className="contact-form__field">
+          <span className="contact-form__label">Phone</span>
           <input
             {...register("phone")}
-            className="mt-1 w-full border border-line bg-fog px-3 py-2 text-pine outline-none focus:border-lichen"
+            autoComplete="tel"
+            placeholder="+91 …"
           />
           {errors.phone ? (
-            <span className="mt-1 block text-xs text-pine">
-              {errors.phone.message}
-            </span>
+            <span className="contact-form__error">{errors.phone.message}</span>
           ) : null}
         </label>
       </div>
-      <label className="block text-sm text-muted">
-        Subject *
-        <select
-          {...register("subject")}
-          className="mt-1 w-full border border-line bg-fog px-3 py-2 text-pine outline-none focus:border-lichen"
-        >
+      <label className="contact-form__field">
+        <span className="contact-form__label">Subject</span>
+        <select {...register("subject")}>
           <option>Stay enquiry</option>
           <option>Availability question</option>
           <option>Directions / transfers</option>
@@ -90,25 +86,19 @@ export function EnquiryForm() {
           <option>Other</option>
         </select>
       </label>
-      <label className="block text-sm text-muted">
-        Message *
+      <label className="contact-form__field">
+        <span className="contact-form__label">Message</span>
         <textarea
           rows={5}
           {...register("message")}
-          className="mt-1 w-full border border-line bg-fog px-3 py-2 text-pine outline-none focus:border-lichen"
+          placeholder="Dates, guests, or anything we should know…"
         />
         {errors.message ? (
-          <span className="mt-1 block text-xs text-pine">
-            {errors.message.message}
-          </span>
+          <span className="contact-form__error">{errors.message.message}</span>
         ) : null}
       </label>
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="bg-pine px-6 py-3 text-sm text-fog transition hover:bg-pine-soft disabled:opacity-60"
-      >
-        {isSubmitting ? "Sending…" : "Submit enquiry"}
+      <button type="submit" disabled={isSubmitting} className="contact-form__submit">
+        {isSubmitting ? "Sending…" : "Send enquiry"}
       </button>
     </form>
   );
