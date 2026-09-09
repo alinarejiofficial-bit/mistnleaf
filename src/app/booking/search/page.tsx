@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BookingStepper } from "@/components/booking/BookingStepper";
 import { param } from "@/lib/booking";
 import { goToAvailability } from "../actions";
-import "./booking-page.css";
+import "../booking-page.css";
 
 export const metadata: Metadata = {
   title: "Search · Booking",
