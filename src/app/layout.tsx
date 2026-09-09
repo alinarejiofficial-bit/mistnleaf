@@ -1,41 +1,42 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { site } from "@/lib/site";
+import { Figtree, Fraunces } from "next/font/google";
+import { AuthProvider } from "@/components/auth/AuthProvider";
+import { AuthAuditBridge } from "@/components/auth/AuthAuditBridge";
+import { AppFrame } from "@/components/auth/AppFrame";
 import "./globals.css";
-import "./hero.css";
 
-const display = Cormorant_Garamond({
-  variable: "--font-display",
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const body = Manrope({
-  variable: "--font-body",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} · Staycation`,
-    template: `%s · ${site.name}`,
+    default: "MistnLeaf Admin",
+    template: "%s · MistnLeaf Admin",
   },
-  description: site.description,
+  description: "Property operations dashboard for MistnLeaf hospitality.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} h-full antialiased`}
+      className={`${figtree.variable} ${fraunces.variable} h-full antialiased`}
     >
-      <body className="site-bg flex min-h-full flex-col text-ink">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="min-h-full font-sans text-foreground">
+        <AuthProvider>
+          <AuthAuditBridge>
+            <AppFrame>{children}</AppFrame>
+          </AuthAuditBridge>
+        </AuthProvider>
       </body>
     </html>
   );
