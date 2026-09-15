@@ -18,19 +18,19 @@
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --page-gutter: 1.25rem;
   --page-max: 72rem;
-  --site-header-height: 4.5rem;
+  --site-header-height: 5.75rem;
 }
 
 @media (min-width: 640px) {
   :root {
-    --site-header-height: 4.75rem;
+    --site-header-height: 6.25rem;
   }
 }
 
 @media (min-width: 768px) {
   :root {
     --page-gutter: 1.5rem;
-    --site-header-height: 5rem;
+    --site-header-height: 6.75rem;
   }
 }
 
@@ -163,13 +163,13 @@ a {
   gap: 0.75rem;
   min-height: var(--site-header-height);
   padding-inline: var(--page-gutter);
-  padding-block: 0.5rem;
+  padding-block: 0.75rem;
 }
 
 @media (min-width: 768px) {
   .site-header__inner {
     gap: 1rem;
-    padding-block: 0.625rem;
+    padding-block: 0.875rem;
   }
 }
 

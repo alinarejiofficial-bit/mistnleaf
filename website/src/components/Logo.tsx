@@ -7,9 +7,9 @@ const LOGO_ASPECT = 987 / 584;
 
 const sizes = {
   header: {
-    width: Math.round(68 * LOGO_ASPECT),
-    height: 68,
-    className: "h-12 w-auto sm:h-14 md:h-[3.75rem]",
+    width: Math.round(96 * LOGO_ASPECT),
+    height: 96,
+    className: "h-16 w-auto sm:h-[4.5rem] md:h-20",
   },
   footer: {
     width: Math.round(72 * LOGO_ASPECT),
