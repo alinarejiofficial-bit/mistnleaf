@@ -12,9 +12,9 @@ const sizes = {
     className: "h-16 w-auto sm:h-[4.5rem] md:h-20",
   },
   footer: {
-    width: Math.round(72 * LOGO_ASPECT),
-    height: 72,
-    className: "h-[3.75rem] w-auto sm:h-16",
+    width: Math.round(112 * LOGO_ASPECT),
+    height: 112,
+    className: "h-[5.5rem] w-auto sm:h-24 md:h-[6.5rem]",
   },
   hero: {
     width: Math.round(180 * LOGO_ASPECT),
@@ -51,7 +51,7 @@ export function Logo({
 
   const image = (
     <Image
-      src={`${src}?v=5`}
+      src={`${src}?v=6`}
       alt="Mistnleaf — Nature in Every Breath"
       width={width}
       height={height}
@@ -61,17 +61,17 @@ export function Logo({
     />
   );
 
+  const wrapClass = `site-logo inline-flex shrink-0 items-center${
+    variant === "light" ? " site-logo--light" : ""
+  }`;
+
   if (href) {
     return (
-      <Link
-        href={href}
-        className="site-logo inline-flex shrink-0 items-center"
-        onClick={onClick}
-      >
+      <Link href={href} className={wrapClass} onClick={onClick}>
         {image}
       </Link>
     );
   }
 
-  return <span className="site-logo inline-flex items-center">{image}</span>;
+  return <span className={wrapClass}>{image}</span>;
 }
