@@ -44,14 +44,6 @@ export function CtaBand() {
   return (
     <section className="cta-band" aria-labelledby="cta-band-title">
       <div className="cta-band__panel">
-        <div
-          aria-hidden
-          className="cta-band__glow cta-band__glow--a"
-        />
-        <div
-          aria-hidden
-          className="cta-band__glow cta-band__glow--b"
-        />
         <div className="cta-band__content">
           <p className="cta-band__eyebrow">Reserve</p>
           <h2 id="cta-band-title" className="cta-band__title">

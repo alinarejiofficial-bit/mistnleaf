@@ -378,19 +378,19 @@ export default async function HomePage() {
           />
         </div>
         <div className="location-band__content mx-auto flex min-h-[24rem] max-w-6xl flex-col items-center justify-end px-5 py-12 text-center sm:px-6 sm:py-16 md:min-h-[34rem] md:py-24">
-          <div className="max-w-xl text-fog">
-            <p className="text-[0.7rem] uppercase tracking-[0.22em] text-fog/60">
+          <div className="location-band__copy max-w-xl">
+            <p className="location-band__eyebrow text-[0.7rem] uppercase tracking-[0.22em]">
               {content.homepageBands.location.eyebrow}
             </p>
             <h2 className="mt-3 font-display text-balance text-[1.85rem] sm:mt-4 sm:text-3xl md:text-[2.75rem]">
               {content.homepageLocation.title}
             </h2>
-            <p className="mt-3 leading-relaxed text-fog/80 sm:mt-4">
+            <p className="location-band__lead mt-3 leading-relaxed sm:mt-4">
               {content.homepageLocation.description}
             </p>
-            <div className="mt-6 grid w-full gap-4 text-sm text-fog/85 sm:mt-7 sm:grid-cols-2 sm:gap-x-8">
+            <div className="location-band__meta mt-6 grid w-full gap-4 text-sm sm:mt-7 sm:grid-cols-2 sm:gap-x-8">
               <p className="text-center sm:text-left">
-                <span className="block text-[0.65rem] uppercase tracking-[0.16em] text-fog/50">
+                <span className="location-band__meta-label block text-[0.65rem] uppercase tracking-[0.16em]">
                   Address
                 </span>
                 {content.homepageLocation.addressLine1}
@@ -398,7 +398,7 @@ export default async function HomePage() {
                 {content.homepageLocation.addressLine2}
               </p>
               <p className="text-center sm:text-left">
-                <span className="block text-[0.65rem] uppercase tracking-[0.16em] text-fog/50">
+                <span className="location-band__meta-label block text-[0.65rem] uppercase tracking-[0.16em]">
                   Airport
                 </span>
                 {content.homepageLocation.airportNote}
@@ -410,7 +410,7 @@ export default async function HomePage() {
                   ? content.homepageLocation.directionsUrl
                   : "/location"
               }
-              className="mt-7 inline-flex items-center gap-2 text-sm tracking-wide text-fog transition hover:gap-3 sm:mt-8"
+              className="location-band__link mt-7 inline-flex items-center gap-2 text-sm tracking-wide transition hover:gap-3 sm:mt-8"
             >
               {content.homepageLocation.directionsLabel}
               <span aria-hidden>→</span>
