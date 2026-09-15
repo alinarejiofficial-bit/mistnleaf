@@ -42,7 +42,11 @@ export function EnquiryForm() {
     >
       <label className="enquiry-form__field">
         Name *
-        <input {...register("name")} autoComplete="name" />
+        <input
+          {...register("name")}
+          autoComplete="name"
+          suppressHydrationWarning
+        />
         {errors.name ? (
           <span className="enquiry-form__error">{errors.name.message}</span>
         ) : null}
@@ -51,14 +55,23 @@ export function EnquiryForm() {
       <div className="enquiry-form__row">
         <label className="enquiry-form__field">
           Email *
-          <input type="email" {...register("email")} autoComplete="email" />
+          <input
+            type="email"
+            {...register("email")}
+            autoComplete="email"
+            suppressHydrationWarning
+          />
           {errors.email ? (
             <span className="enquiry-form__error">{errors.email.message}</span>
           ) : null}
         </label>
         <label className="enquiry-form__field">
           Phone *
-          <input {...register("phone")} autoComplete="tel" />
+          <input
+            {...register("phone")}
+            autoComplete="tel"
+            suppressHydrationWarning
+          />
           {errors.phone ? (
             <span className="enquiry-form__error">{errors.phone.message}</span>
           ) : null}
@@ -67,7 +80,7 @@ export function EnquiryForm() {
 
       <label className="enquiry-form__field">
         Subject *
-        <select {...register("subject")}>
+        <select {...register("subject")} suppressHydrationWarning>
           <option>Stay enquiry</option>
           <option>Availability question</option>
           <option>Directions / transfers</option>
@@ -78,7 +91,7 @@ export function EnquiryForm() {
 
       <label className="enquiry-form__field">
         Message *
-        <textarea rows={5} {...register("message")} />
+        <textarea rows={5} {...register("message")} suppressHydrationWarning />
         {errors.message ? (
           <span className="enquiry-form__error">{errors.message.message}</span>
         ) : null}
@@ -89,6 +102,7 @@ export function EnquiryForm() {
           type="submit"
           disabled={isSubmitting}
           className="enquiry-form__submit"
+          suppressHydrationWarning
         >
           {isSubmitting ? "Sending…" : "Submit enquiry"}
         </button>
