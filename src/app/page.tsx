@@ -8,7 +8,7 @@ import { Hero } from "@/components/home/Hero";
 import { CtaBand, Section } from "@/components/PageShell";
 import { media } from "@/lib/media";
 import { getSiteContent } from "@/lib/cms/get-site-content";
-import { formatInr } from "@/lib/site";
+import { formatInr, site } from "@/lib/site";
 
 function SectionHeading({
   eyebrow,
@@ -50,7 +50,10 @@ function SectionHeading({
 }
 
 export const metadata: Metadata = {
-  title: "Staycation",
+  title: {
+    absolute: `${site.name} · ${site.tagline}`,
+  },
+  description: site.description,
 };
 
 export default async function HomePage() {

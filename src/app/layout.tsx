@@ -25,10 +25,11 @@ const body = Manrope({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} · Staycation`,
+    default: site.name,
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  applicationName: site.name,
 };
 
 export default async function RootLayout({ children }: LayoutProps<"/">) {

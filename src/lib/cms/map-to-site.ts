@@ -769,7 +769,7 @@ export function getDefaultSiteContent(): MappedSiteContent {
       hours: defaultSite.hours,
     },
     hero: {
-      eyebrow: "Staycation",
+      eyebrow: "Mistnleaf",
       title: defaultSite.tagline,
       description: defaultSite.description,
       image: media.hero,
