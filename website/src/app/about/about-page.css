@@ -25,12 +25,12 @@
   inset: 0;
   background:
     radial-gradient(
-      ellipse 70% 65% at 50% 55%,
-      rgba(26, 39, 28, 0.58) 0%,
-      rgba(26, 39, 28, 0.3) 55%,
-      rgba(26, 39, 28, 0.2) 100%
+      ellipse 72% 58% at 50% 48%,
+      rgba(245, 239, 230, 0.58) 0%,
+      rgba(245, 239, 230, 0.22) 48%,
+      transparent 74%
     ),
-    linear-gradient(to top, rgba(26, 39, 28, 0.58) 0%, transparent 45%);
+    linear-gradient(to top, rgba(26, 39, 28, 0.35) 0%, transparent 50%);
 }
 
 .about-page-hero__content {
@@ -62,10 +62,13 @@
 
 .about-page-hero__eyebrow {
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: color-mix(in oklab, var(--fog) 72%, transparent);
+  color: #000000;
+  text-shadow:
+    0 1px 10px rgba(245, 239, 230, 0.95),
+    0 0 24px rgba(245, 239, 230, 0.8);
 }
 
 .about-page-hero__title {
@@ -77,7 +80,10 @@
   font-weight: 400;
   letter-spacing: -0.015em;
   line-height: 1.2;
-  color: color-mix(in oklab, var(--fog) 92%, transparent);
+  color: #000000;
+  text-shadow:
+    0 2px 16px rgba(245, 239, 230, 0.98),
+    0 0 36px rgba(245, 239, 230, 0.85);
   text-wrap: balance;
 }
 
@@ -87,7 +93,10 @@
   margin-inline: auto;
   font-size: clamp(0.95rem, 3.4vw, 1.1rem);
   line-height: 1.7;
-  color: color-mix(in oklab, var(--fog) 78%, transparent);
+  color: #000000;
+  text-shadow:
+    0 1px 12px rgba(245, 239, 230, 0.95),
+    0 0 28px rgba(245, 239, 230, 0.8);
 }
 
 .about-page-story {
