@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { ButtonLink } from "@/components/ButtonLink";
 import { CmsSectionEdit } from "@/components/cms/CmsSectionEdit";
-import { Logo } from "@/components/Logo";
 import { CtaBand, Section } from "@/components/PageShell";
 import { getSiteContent } from "@/lib/cms/get-site-content";
 import "./about-page.css";
@@ -42,7 +41,6 @@ export default async function AboutPage() {
         </div>
         <div className="about-page-hero__content">
           <p className="about-page-hero__eyebrow">{about.pageEyebrow}</p>
-          <Logo size="about" variant="light" href={null} priority className="about-page-hero__logo" />
           <h1 className="about-page-hero__title">{about.title}</h1>
           <p className="about-page-hero__lead">{about.lead}</p>
         </div>

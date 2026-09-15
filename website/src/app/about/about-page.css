@@ -68,10 +68,6 @@
   color: color-mix(in oklab, var(--fog) 72%, transparent);
 }
 
-.about-page-hero__logo {
-  margin-top: 1rem;
-}
-
 .about-page-hero__title {
   margin-top: 1rem;
   max-width: 22rem;
