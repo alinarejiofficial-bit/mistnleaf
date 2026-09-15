@@ -746,8 +746,12 @@ export function mapCmsToSiteContent(cms: PublishedCmsContent): MappedSiteContent
         { href: "/privacy", label: "Privacy Policy" },
         { href: "/terms", label: "Terms & Conditions" },
         { href: "/cancellation", label: "Cancellation Policy" },
-        { href: "/staff/login", label: "Staff login" },
-      ]),
+      ]).filter(
+        (link) =>
+          link.label.toLowerCase() !== "staff login" &&
+          link.href !== "/staff/login" &&
+          link.href !== "/login",
+      ),
     },
     fromCms: true,
   };
@@ -952,7 +956,6 @@ export function getDefaultSiteContent(): MappedSiteContent {
         { href: "/privacy", label: "Privacy Policy" },
         { href: "/terms", label: "Terms & Conditions" },
         { href: "/cancellation", label: "Cancellation Policy" },
-        { href: "/staff/login", label: "Staff login" },
       ],
     },
     fromCms: false,

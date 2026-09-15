@@ -29,7 +29,6 @@ const defaultPolicies = [
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms & Conditions" },
   { href: "/cancellation", label: "Cancellation Policy" },
-  { href: "/staff/login", label: "Staff login" },
 ];
 
 function ensureHomeLink(links: { href: string; label: string }[]) {
@@ -81,7 +80,12 @@ export function Footer({ content }: { content?: MappedSiteContent }) {
   const contact = content?.contact;
   const explore = ensureHomeLink(footer?.exploreLinks ?? defaultExplore);
   const plan = footer?.planLinks ?? defaultPlan;
-  const policies = footer?.policyLinks ?? defaultPolicies;
+  const policies = (footer?.policyLinks ?? defaultPolicies).filter(
+    (link) =>
+      link.label.toLowerCase() !== "staff login" &&
+      link.href !== "/staff/login" &&
+      link.href !== "/login",
+  );
 
   return (
     <footer className="site-footer relative">
