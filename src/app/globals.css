@@ -646,10 +646,11 @@ a.site-logo img {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  color: var(--pine);
+  color: #000000;
   font-size: 0.875rem;
+  font-weight: 600;
   letter-spacing: 0.04em;
-  transition: gap 0.3s var(--ease-out), color 0.3s ease;
+  transition: gap 0.3s var(--ease-out), opacity 0.3s ease;
 }
 
 .link-arrow::after {
@@ -659,7 +660,8 @@ a.site-logo img {
 
 .link-arrow:hover {
   gap: 0.65rem;
-  color: var(--pine-soft);
+  color: #000000;
+  opacity: 0.78;
 }
 
 .input-field {
