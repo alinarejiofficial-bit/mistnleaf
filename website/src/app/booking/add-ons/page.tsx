@@ -50,12 +50,12 @@ export default async function BookingAddonsPage({ searchParams }: Props) {
       <Section className="pt-0">
         <form
           action={goToGuest}
-          className="grid gap-8 lg:grid-cols-[1fr_280px]"
+          className="grid gap-8 lg:grid-cols-[1fr_280px] lg:items-start"
         >
-          <BookingHiddens query={{ ...query, addons: "" }} includeGuest />
-          <input type="hidden" name="addonsStep" value="1" />
-
           <div className="space-y-4">
+            <BookingHiddens query={{ ...query, addons: "" }} includeGuest />
+            <input type="hidden" name="addonsStep" value="1" />
+
             {catalog.map((addon) => (
               <label
                 key={addon.id}

@@ -38,8 +38,16 @@ export function StaySummaryCard({ query }: { query: BookingQuery }) {
           <dt>Room</dt>
           <dd className="text-right text-pine">{room?.name || "Not selected"}</dd>
         </div>
+        {totals ? (
+          <div className="flex justify-between gap-3 border-t border-line pt-3">
+            <dt>
+              Room · {formatInr(totals.perNight)} × {nights}
+            </dt>
+            <dd className="text-pine">{formatInr(totals.roomSubtotal)}</dd>
+          </div>
+        ) : null}
         {totals && totals.addons.length > 0 ? (
-          <div className="border-t border-line pt-3">
+          <div>
             <dt className="mb-2 text-muted">Add-ons</dt>
             <dd className="space-y-1">
               {totals.addons.map((addon) => (

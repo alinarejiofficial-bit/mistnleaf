@@ -107,6 +107,7 @@ export function nightsBetween(checkIn: string, checkOut: string) {
 
 export function getSelectedAddons(addonCsv: string) {
   const ids = parseAddonIds(addonCsv);
+  if (ids.length === 0) return [];
   const catalog = db().addons.filter((a) => a.active);
   return catalog.filter((a) => ids.includes(a.id));
 }
@@ -120,8 +121,8 @@ export function calcStayTotal(
   const addonTotal = selected.reduce((sum, item) => sum + item.price, 0);
   const roomSubtotal = room.price * nights;
   const subtotal = roomSubtotal + addonTotal;
-  const taxes = Math.round(subtotal * 0.12);
-  const total = subtotal + taxes;
+  const taxes = 0;
+  const total = subtotal;
   return {
     roomSubtotal,
     addonTotal,

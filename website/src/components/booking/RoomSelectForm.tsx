@@ -46,10 +46,10 @@ export function RoomSelectForm({
   );
 
   return (
-    <form action={action} className="grid gap-8 lg:grid-cols-[1fr_280px]">
-      <BookingHiddens query={{ ...query, room: "" }} includeGuest />
-
+    <form action={action} className="grid gap-8 lg:grid-cols-[1fr_280px] lg:items-start">
       <div className="space-y-5">
+        <BookingHiddens query={{ ...query, room: "" }} includeGuest />
+
         {options.map(({ room, estimate, nights }) => (
           <label
             key={room.slug}

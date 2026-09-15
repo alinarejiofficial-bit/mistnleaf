@@ -52,7 +52,7 @@ export default async function BookingAvailabilityPage({ searchParams }: Props) {
             prevented). Please choose another room or dates.
           </p>
         ) : null}
-        <div className="grid gap-8 lg:grid-cols-[1fr_280px]">
+        <div className="grid gap-8 lg:grid-cols-[1fr_280px] lg:items-start">
           <div className="space-y-4">
             {availability.map(({ room, available, status, estimate }) => (
               <article

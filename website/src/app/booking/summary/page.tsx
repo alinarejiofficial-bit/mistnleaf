@@ -45,7 +45,7 @@ export default async function BookingSummaryPage({ searchParams }: Props) {
       <PageIntro
         eyebrow="Step 6"
         title="Price Calculation"
-        lead="Review your stay total before payment. Taxes are estimated for this demo."
+        lead="Review your stay total before payment."
       />
       <Section className="pt-0">
         <div className="mx-auto max-w-xl border border-line bg-fog/80 p-6 md:p-8">
@@ -80,10 +80,6 @@ export default async function BookingSummaryPage({ searchParams }: Props) {
                 <dd className="text-pine">{formatInr(addon.price)}</dd>
               </div>
             ))}
-            <div className="flex justify-between gap-4">
-              <dt className="text-muted">Taxes & fees (12%)</dt>
-              <dd className="text-pine">{formatInr(totals.taxes)}</dd>
-            </div>
             <div className="flex justify-between gap-4 border-t border-line pt-3">
               <dt className="font-display text-xl text-pine">Total</dt>
               <dd className="font-display text-2xl text-pine">

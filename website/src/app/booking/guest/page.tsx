@@ -45,11 +45,10 @@ export default async function BookingGuestPage({ searchParams }: Props) {
       <Section className="pt-0">
         <form
           action={goToSummary}
-          className="grid gap-8 lg:grid-cols-[1fr_280px]"
+          className="grid gap-8 lg:grid-cols-[1fr_280px] lg:items-start"
         >
-          <BookingHiddens query={query} />
-
           <div className="space-y-4">
+            <BookingHiddens query={query} />
             {error ? (
               <p className="border border-line bg-mist px-4 py-3 text-sm text-pine">
                 Please enter your name and email to continue.
