@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
   BookingHiddens,
+  BookingSubmitButton,
   ghostBtnClass,
-  primaryBtnClass,
   StaySummaryCard,
 } from "@/components/booking/BookingUi";
 import { formatInr, type BookingQuery } from "@/lib/booking";
@@ -82,9 +82,7 @@ export function AddonsSelectForm({
         ))}
 
         <div className="flex flex-wrap gap-3 pt-2">
-          <button type="submit" className={primaryBtnClass}>
-            Continue to guest details
-          </button>
+          <BookingSubmitButton>Continue to guest details</BookingSubmitButton>
           <Link href={backHref} className={ghostBtnClass}>
             Back
           </Link>

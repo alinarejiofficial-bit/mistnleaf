@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import {
   calcStayTotal,
   formatInr,
@@ -131,3 +132,24 @@ export const primaryBtnClass =
 
 export const ghostBtnClass =
   "inline-flex min-h-11 items-center justify-center border border-line px-7 py-3 text-[0.8rem] font-medium uppercase tracking-[0.08em] text-pine transition hover:bg-sand-cool/60";
+
+export function BookingSubmitButton({
+  children,
+  className = primaryBtnClass,
+  disabled = false,
+}: {
+  children: ReactNode;
+  className?: string;
+  disabled?: boolean;
+}) {
+  return (
+    <button
+      type="submit"
+      disabled={disabled}
+      className={className}
+      suppressHydrationWarning
+    >
+      {children}
+    </button>
+  );
+}

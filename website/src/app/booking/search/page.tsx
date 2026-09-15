@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BookingStepper } from "@/components/booking/BookingStepper";
 import {
   fieldClass,
-  primaryBtnClass,
+  BookingSubmitButton,
 } from "@/components/booking/BookingUi";
 import { PageIntro, Section } from "@/components/PageShell";
 import { param } from "@/lib/booking";
@@ -76,9 +76,7 @@ export default async function BookingSearchPage({ searchParams }: Props) {
               className={fieldClass}
             />
           </label>
-          <button type="submit" className={primaryBtnClass}>
-            Check availability
-          </button>
+          <BookingSubmitButton>Check availability</BookingSubmitButton>
         </form>
       </Section>
     </>

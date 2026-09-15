@@ -4,9 +4,9 @@ import { redirect } from "next/navigation";
 import { BookingStepper } from "@/components/booking/BookingStepper";
 import {
   BookingHiddens,
+  BookingSubmitButton,
   fieldClass,
   ghostBtnClass,
-  primaryBtnClass,
 } from "@/components/booking/BookingUi";
 import { PageIntro, Section } from "@/components/PageShell";
 import {
@@ -105,9 +105,7 @@ export default async function BookingPaymentPage({ searchParams }: Props) {
           </div>
 
           <div className="flex flex-wrap gap-3 pt-2">
-            <button type="submit" className={primaryBtnClass}>
-              Confirm & pay
-            </button>
+            <BookingSubmitButton>Confirm & pay</BookingSubmitButton>
             <Link href={`/booking/summary?${q}`} className={ghostBtnClass}>
               Back
             </Link>

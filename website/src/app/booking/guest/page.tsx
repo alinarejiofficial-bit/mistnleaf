@@ -4,9 +4,9 @@ import { redirect } from "next/navigation";
 import { BookingStepper } from "@/components/booking/BookingStepper";
 import {
   BookingHiddens,
+  BookingSubmitButton,
   fieldClass,
   ghostBtnClass,
-  primaryBtnClass,
   StaySummaryCard,
 } from "@/components/booking/BookingUi";
 import { PageIntro, Section } from "@/components/PageShell";
@@ -94,9 +94,9 @@ export default async function BookingGuestPage({ searchParams }: Props) {
               />
             </label>
             <div className="flex flex-wrap gap-3 pt-2">
-              <button type="submit" className={primaryBtnClass}>
+              <BookingSubmitButton>
                 Continue to price summary
-              </button>
+              </BookingSubmitButton>
               <Link href={`/booking/add-ons?${q}`} className={ghostBtnClass}>
                 Back
               </Link>

@@ -3,8 +3,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { BookingStepper } from "@/components/booking/BookingStepper";
 import {
+  BookingSubmitButton,
   ghostBtnClass,
-  primaryBtnClass,
   StaySummaryCard,
 } from "@/components/booking/BookingUi";
 import { PageIntro, Section } from "@/components/PageShell";
@@ -93,13 +93,9 @@ export default async function BookingAvailabilityPage({ searchParams }: Props) {
               {query.room ? (
                 <input type="hidden" name="room" value={query.room} />
               ) : null}
-              <button
-                type="submit"
-                className={primaryBtnClass}
-                disabled={openCount === 0}
-              >
+              <BookingSubmitButton disabled={openCount === 0}>
                 Continue to room selection
-              </button>
+              </BookingSubmitButton>
               <Link href={`/booking/search?${q}`} className={ghostBtnClass}>
                 Edit search
               </Link>

@@ -4,8 +4,8 @@ import { redirect } from "next/navigation";
 import { BookingStepper } from "@/components/booking/BookingStepper";
 import {
   BookingHiddens,
+  BookingSubmitButton,
   ghostBtnClass,
-  primaryBtnClass,
 } from "@/components/booking/BookingUi";
 import { PageIntro, Section } from "@/components/PageShell";
 import {
@@ -90,9 +90,7 @@ export default async function BookingSummaryPage({ searchParams }: Props) {
 
           <form action={goToPayment} className="mt-8 flex flex-wrap gap-3">
             <BookingHiddens query={query} includeGuest />
-            <button type="submit" className={primaryBtnClass}>
-              Continue to payment
-            </button>
+            <BookingSubmitButton>Continue to payment</BookingSubmitButton>
             <Link href={`/booking/guest?${q}`} className={ghostBtnClass}>
               Back
             </Link>
