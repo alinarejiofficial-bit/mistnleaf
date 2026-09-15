@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { staffCreateBookingAction } from "@/app/staff/actions";
+import { StaffBookingDateFields } from "@/app/staff/bookings/new/StaffBookingDateFields";
 import { getCurrentStaff, canAccess } from "@/lib/auth/staff";
 import { availableUnitsForType, db, quoteStay } from "@/lib/store/db";
 import { formatInr } from "@/lib/utils";
@@ -97,26 +98,10 @@ export default async function StaffNewBookingPage({ searchParams }: Props) {
             method="get"
             className="mt-8 grid gap-4 border border-[#d7dbd6] bg-white p-5 md:grid-cols-4"
           >
-            <label className="block text-xs uppercase tracking-[0.12em] text-[#667069]">
-              Check-in
-              <input
-                type="date"
-                name="checkIn"
-                required
-                defaultValue={checkIn}
-                className="mt-1 w-full border border-[#d7dbd6] px-3 py-2 text-sm normal-case tracking-normal"
-              />
-            </label>
-            <label className="block text-xs uppercase tracking-[0.12em] text-[#667069]">
-              Check-out
-              <input
-                type="date"
-                name="checkOut"
-                required
-                defaultValue={checkOut}
-                className="mt-1 w-full border border-[#d7dbd6] px-3 py-2 text-sm normal-case tracking-normal"
-              />
-            </label>
+            <StaffBookingDateFields
+              initialCheckIn={checkIn}
+              initialCheckOut={checkOut}
+            />
             <label className="block text-xs uppercase tracking-[0.12em] text-[#667069]">
               Room type
               <select

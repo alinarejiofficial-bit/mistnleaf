@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BookingDateFields } from "@/components/booking/BookingDateFields";
 import { BookingStepper } from "@/components/booking/BookingStepper";
 import {
   fieldClass,
@@ -19,7 +20,6 @@ export default async function BookingSearchPage({ searchParams }: Props) {
   const params = await searchParams;
   const error = param(params, "error");
   const room = param(params, "room");
-  const today = new Date().toISOString().slice(0, 10);
 
   return (
     <>
@@ -37,33 +37,13 @@ export default async function BookingSearchPage({ searchParams }: Props) {
           {room ? <input type="hidden" name="room" value={room} /> : null}
           {error === "dates" ? (
             <p className="border border-line bg-mist px-4 py-3 text-sm text-pine">
-              Please select valid check-in and check-out dates.
+              Please select a check-out date that is after check-in.
             </p>
           ) : null}
-          <div className="grid gap-4 sm:grid-cols-2">
-            <label className="block text-sm text-muted">
-              Check-in
-              <input
-                type="date"
-                name="checkIn"
-                required
-                min={today}
-                defaultValue={param(params, "checkIn")}
-                className={fieldClass}
-              />
-            </label>
-            <label className="block text-sm text-muted">
-              Check-out
-              <input
-                type="date"
-                name="checkOut"
-                required
-                min={today}
-                defaultValue={param(params, "checkOut")}
-                className={fieldClass}
-              />
-            </label>
-          </div>
+          <BookingDateFields
+            initialCheckIn={param(params, "checkIn")}
+            initialCheckOut={param(params, "checkOut")}
+          />
           <label className="block text-sm text-muted">
             Guests
             <input
