@@ -377,13 +377,13 @@ a {
 .about-band {
   position: relative;
   overflow: hidden;
-  padding: 3.5rem 0;
+  padding: 2.5rem 0;
   background: #d1bfab;
 }
 
 @media (min-width: 768px) {
   .about-band {
-    padding: 7rem 0;
+    padding: 3.5rem 0;
   }
 }
 
@@ -730,13 +730,13 @@ a {
 .gallery-intro {
   max-width: 36rem;
   margin-inline: auto;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
 @media (min-width: 768px) {
   .gallery-intro {
-    margin-bottom: 3.75rem;
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -1410,13 +1410,13 @@ a {
 /* —— CTA band (separate from footer) —— */
 .cta-band {
   position: relative;
-  padding: 2rem var(--page-gutter) 2.5rem;
+  padding: 1.25rem var(--page-gutter) 1.75rem;
   background: #d1bfab;
 }
 
 @media (min-width: 768px) {
   .cta-band {
-    padding: 3.25rem var(--page-gutter) 3.75rem;
+    padding: 2rem var(--page-gutter) 2.5rem;
   }
 }
 

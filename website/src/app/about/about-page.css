@@ -100,13 +100,13 @@
 }
 
 .about-page-story {
-  padding: 3.5rem 0;
+  padding: 2.5rem 0;
   background: #d1bfab;
 }
 
 @media (min-width: 768px) {
   .about-page-story {
-    padding: 6.5rem 0;
+    padding: 3.5rem 0;
   }
 }
 

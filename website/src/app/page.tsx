@@ -24,7 +24,7 @@ function SectionHeading({
   linkLabel?: string;
 }) {
   return (
-    <div className="mb-9 text-center sm:mb-12 md:mb-14">
+    <div className="mb-6 text-center sm:mb-8 md:mb-9">
       <div className="mx-auto max-w-2xl">
         <div className="flex justify-center">
           <p className="eyebrow">{eyebrow}</p>
@@ -39,7 +39,7 @@ function SectionHeading({
         ) : null}
       </div>
       {href && linkLabel ? (
-        <div className="mt-5 flex justify-center sm:mt-6">
+        <div className="mt-4 flex justify-center sm:mt-5">
           <Link href={href} className="link-arrow">
             {linkLabel}
           </Link>
