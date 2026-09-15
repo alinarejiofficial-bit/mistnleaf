@@ -5,6 +5,7 @@ import { EnquiryForm } from "@/components/contact/EnquiryForm";
 import { CmsSectionEdit } from "@/components/cms/CmsSectionEdit";
 import { PageIntro, Section } from "@/components/PageShell";
 import { getSiteContent } from "@/lib/cms/get-site-content";
+import "./contact-page.css";
 
 export const metadata: Metadata = {
   title: "Contact & Enquiries",
@@ -32,53 +33,47 @@ export default async function ContactPage({ searchParams }: Props) {
         <Suspense fallback={null}>
           <CmsSectionEdit section="contact" label="Contact" />
         </Suspense>
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div>
-            <h2 className="font-display text-2xl text-pine">Resort contact</h2>
-            <div className="mt-6 space-y-4 text-muted">
-              <p>
-                <span className="block text-xs uppercase tracking-[0.18em] text-lichen">
-                  Email
-                </span>
-                <a
-                  href={`mailto:${contact.email || siteInfo.email}`}
-                  className="text-pine hover:underline"
-                >
-                  {contact.email || siteInfo.email}
-                </a>
-              </p>
-              <p>
-                <span className="block text-xs uppercase tracking-[0.18em] text-lichen">
-                  Phone
-                </span>
-                <a
-                  href={`tel:${(contact.phone || siteInfo.phone).replace(/\s/g, "")}`}
-                  className="text-pine hover:underline"
-                >
-                  {contact.phone || siteInfo.phone}
-                </a>
-              </p>
-              <p>
-                <span className="block text-xs uppercase tracking-[0.18em] text-lichen">
-                  Hours
-                </span>
-                {siteInfo.hours}
-              </p>
-              <p>
-                <span className="block text-xs uppercase tracking-[0.18em] text-lichen">
-                  Address
-                </span>
-                {contact.addressLine1 || siteInfo.address.line1}
-                <br />
-                {contact.addressLine2 || siteInfo.address.line2}
-                <br />
-                {siteInfo.address.country}
-              </p>
-              {contact.checkInNote ? (
-                <p className="text-sm">{contact.checkInNote}</p>
-              ) : null}
-            </div>
-            <div className="mt-8 flex flex-wrap gap-4 text-sm">
+        <div className="contact-layout">
+          <div className="contact-details">
+            <h2 className="contact-details__title">Resort contact</h2>
+            <dl className="contact-details__list">
+              <div className="contact-detail">
+                <dt>Email</dt>
+                <dd>
+                  <a href={`mailto:${contact.email || siteInfo.email}`}>
+                    {contact.email || siteInfo.email}
+                  </a>
+                </dd>
+              </div>
+              <div className="contact-detail">
+                <dt>Phone</dt>
+                <dd>
+                  <a
+                    href={`tel:${(contact.phone || siteInfo.phone).replace(/\s/g, "")}`}
+                  >
+                    {contact.phone || siteInfo.phone}
+                  </a>
+                </dd>
+              </div>
+              <div className="contact-detail">
+                <dt>Hours</dt>
+                <dd>{siteInfo.hours}</dd>
+              </div>
+              <div className="contact-detail">
+                <dt>Address</dt>
+                <dd>
+                  {contact.addressLine1 || siteInfo.address.line1}
+                  <br />
+                  {contact.addressLine2 || siteInfo.address.line2}
+                  <br />
+                  {siteInfo.address.country}
+                </dd>
+              </div>
+            </dl>
+            {contact.checkInNote ? (
+              <p className="contact-details__note">{contact.checkInNote}</p>
+            ) : null}
+            <div className="contact-details__links">
               <Link href="/location" className="link-arrow">
                 View location & directions
               </Link>
@@ -88,21 +83,21 @@ export default async function ContactPage({ searchParams }: Props) {
             </div>
           </div>
 
-          <div className="border border-line bg-fog/70 p-6 md:p-8">
-            <h2 className="font-display text-2xl text-pine">Submit an enquiry</h2>
-            <p className="mt-2 text-sm text-muted">
+          <div className="contact-form-panel">
+            <h2 className="contact-form-panel__title">Submit an enquiry</h2>
+            <p className="contact-form-panel__lead">
               Tell us what you need — stays, transfers, experiences, or general
               questions.
             </p>
             {sent ? (
-              <div className="mt-6 border border-line bg-sand-cool/50 px-4 py-5 text-sm text-pine">
+              <div className="contact-form-panel__success">
                 Thank you. Your enquiry has been received
                 {typeof params.id === "string" ? ` (ref ${params.id})` : ""}.
                 Our team will follow up by email.
               </div>
             ) : null}
             {missing ? (
-              <p className="mt-4 text-sm text-pine">
+              <p className="contact-form-panel__error">
                 Please complete the required fields and try again.
               </p>
             ) : null}
@@ -111,10 +106,7 @@ export default async function ContactPage({ searchParams }: Props) {
                 <EnquiryForm />
               </div>
             ) : (
-              <Link
-                href="/contact"
-                className="mt-6 inline-flex text-sm text-pine underline-offset-4 hover:underline"
-              >
+              <Link href="/contact" className="contact-form-panel__again">
                 Send another enquiry
               </Link>
             )}

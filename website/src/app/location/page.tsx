@@ -60,41 +60,33 @@ export default async function LocationPage() {
       </section>
 
       <Section>
-        <div className="grid gap-10 md:grid-cols-3">
-          <div className="border-t-2 border-lichen/50 pt-5">
-            <p className="text-[0.68rem] uppercase tracking-[0.16em] text-lichen">
-              By air
-            </p>
-            <p className="mt-3 font-display text-xl text-pine">
-              Cochin International
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
+        <div className="location-ways">
+          <div className="location-way">
+            <p className="location-way__label">By air</p>
+            <p className="location-way__title">Cochin International</p>
+            <p className="location-way__copy">
               {location.airportNote}. Private transfers can be arranged when you
               book.
             </p>
           </div>
-          <div className="border-t-2 border-lichen/50 pt-5">
-            <p className="text-[0.68rem] uppercase tracking-[0.16em] text-lichen">
-              Arrival
-            </p>
-            <p className="mt-3 font-display text-xl text-pine">Hill Road access</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
+          <div className="location-way">
+            <p className="location-way__label">Arrival</p>
+            <p className="location-way__title">Hill Road access</p>
+            <p className="location-way__copy">
               Near Whispering Pines. Share your ETA and we will guide the final
               stretch to the lodge.
             </p>
           </div>
-          <div className="border-t-2 border-lichen/50 pt-5">
-            <p className="text-[0.68rem] uppercase tracking-[0.16em] text-lichen">
-              Need help?
-            </p>
-            <p className="mt-3 font-display text-xl text-pine">Ask the desk</p>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
+          <div className="location-way">
+            <p className="location-way__label">Need help?</p>
+            <p className="location-way__title">Ask the desk</p>
+            <p className="location-way__copy">
               Email {siteInfo.email} or call {siteInfo.phone} for directions and
               transfer quotes.
             </p>
           </div>
         </div>
-        <div className="mt-12 flex flex-wrap gap-3">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <a
             href={directionsHref}
             target="_blank"
