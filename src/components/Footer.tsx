@@ -7,6 +7,7 @@ import type { MappedSiteContent } from "@/lib/cms/map-to-site";
 import { site } from "@/lib/site";
 
 const defaultExplore = [
+  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/rooms", label: "Rooms" },
   { href: "/experiences", label: "Experiences" },
@@ -30,6 +31,14 @@ const defaultPolicies = [
   { href: "/cancellation", label: "Cancellation Policy" },
   { href: "/staff/login", label: "Staff login" },
 ];
+
+function ensureHomeLink(links: { href: string; label: string }[]) {
+  const hasHome = links.some(
+    (link) => link.href === "/" || link.label.toLowerCase() === "home",
+  );
+  if (hasHome) return links;
+  return [{ href: "/", label: "Home" }, ...links];
+}
 
 function FooterColumn({
   title,
@@ -63,7 +72,7 @@ export function Footer({ content }: { content?: MappedSiteContent }) {
   const siteInfo = content?.site ?? site;
   const footer = content?.footer;
   const contact = content?.contact;
-  const explore = footer?.exploreLinks ?? defaultExplore;
+  const explore = ensureHomeLink(footer?.exploreLinks ?? defaultExplore);
   const plan = footer?.planLinks ?? defaultPlan;
   const policies = footer?.policyLinks ?? defaultPolicies;
 

@@ -56,6 +56,7 @@ const FOOTER_PATH_ALIASES: Record<string, string> = {
 };
 
 const FOOTER_LABEL_ALIASES: Record<string, string> = {
+  home: "/",
   about: "/about",
   rooms: "/rooms",
   experiences: "/experiences",
@@ -717,6 +718,7 @@ export function mapCmsToSiteContent(cms: PublishedCmsContent): MappedSiteContent
       description: cms.footer.brandDescription,
       copyright: cms.footer.copyright,
       exploreLinks: normalizeFooterLinks(cms.footer.exploreLinks, [
+        { href: "/", label: "Home" },
         { href: "/about", label: "About" },
         { href: "/rooms", label: "Rooms" },
         { href: "/experiences", label: "Experiences" },
@@ -922,6 +924,7 @@ export function getDefaultSiteContent(): MappedSiteContent {
       description: defaultSite.description,
       copyright: `© ${new Date().getFullYear()} ${defaultSite.name}. Nature in every breath.`,
       exploreLinks: [
+        { href: "/", label: "Home" },
         { href: "/about", label: "About" },
         { href: "/rooms", label: "Rooms" },
         { href: "/experiences", label: "Experiences" },
