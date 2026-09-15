@@ -1771,16 +1771,23 @@ a {
   max-width: var(--page-max);
   margin-inline: auto;
   padding: 3.25rem var(--page-gutter) 3rem;
+  justify-items: center;
+  text-align: center;
 }
 
 @media (min-width: 640px) {
   .site-footer__inner {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2.5rem 2rem;
+    justify-items: stretch;
+    text-align: left;
   }
 
   .site-footer__brand {
     grid-column: 1 / -1;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
   }
 }
 
@@ -1794,18 +1801,27 @@ a {
 
   .site-footer__brand {
     grid-column: auto;
+    justify-self: start;
+    align-items: flex-start;
+    text-align: left;
   }
 }
 
 .site-footer__brand {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   max-width: 22rem;
+  text-align: center;
+}
+
+.site-footer__brand .site-logo {
+  justify-content: center;
 }
 
 .site-footer__brand .site-logo img {
   opacity: 0.85;
+  object-position: center;
 }
 
 .site-footer__contact {
@@ -1815,11 +1831,13 @@ a {
   font-size: 0.9rem;
   line-height: 1.55;
   color: color-mix(in oklab, var(--fog) 78%, transparent);
+  justify-items: center;
 }
 
 .site-footer__contact-line {
   display: grid;
   gap: 0.2rem;
+  justify-items: center;
 }
 
 .site-footer__contact-label {
@@ -1854,6 +1872,10 @@ a {
 
 .site-footer__col {
   min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .site-footer__heading {
@@ -1867,6 +1889,7 @@ a {
 .site-footer__nav {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.65rem;
   margin-top: 1.15rem;
 }
@@ -1885,7 +1908,44 @@ a {
 
 .site-footer__link:hover {
   color: var(--fog);
-  transform: translateX(2px);
+  transform: none;
+}
+
+@media (min-width: 640px) {
+  .site-footer__col {
+    align-items: flex-start;
+  }
+
+  .site-footer__nav {
+    align-items: flex-start;
+  }
+
+  .site-footer__contact,
+  .site-footer__contact-line {
+    justify-items: start;
+  }
+
+  .site-footer__link:hover {
+    transform: translateX(2px);
+  }
+
+  .site-footer__brand {
+    align-items: center;
+  }
+
+  .site-footer__brand .site-logo img {
+    object-position: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-footer__brand .site-logo {
+    justify-content: flex-start;
+  }
+
+  .site-footer__brand .site-logo img {
+    object-position: left;
+  }
 }
 
 .site-footer__bar {
