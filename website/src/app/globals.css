@@ -54,10 +54,11 @@
 
 html {
   scroll-behavior: smooth;
+  background: #d1bfab;
 }
 
 body {
-  background: var(--background);
+  background: #d1bfab;
   color: #000000;
   font-family: var(--font-body), system-ui, sans-serif;
   font-feature-settings: "ss01" on, "cv11" on;
@@ -205,7 +206,7 @@ a {
     var(--page-gutter)
     1.25rem;
   border-bottom: 1px solid var(--line);
-  background: color-mix(in oklab, var(--mist) 28%, var(--fog));
+  background: #d1bfab;
 }
 
 .booking-stepper__list {

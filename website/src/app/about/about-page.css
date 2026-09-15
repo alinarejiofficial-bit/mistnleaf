@@ -101,11 +101,7 @@
 
 .about-page-story {
   padding: 3.5rem 0;
-  background: linear-gradient(
-    165deg,
-    var(--mist) 0%,
-    color-mix(in oklab, var(--fog) 65%, var(--mist)) 100%
-  );
+  background: #d1bfab;
 }
 
 @media (min-width: 768px) {
@@ -199,7 +195,7 @@
 }
 
 .about-page-pillars {
-  background: color-mix(in oklab, var(--fog) 70%, white);
+  background: #d1bfab;
 }
 
 .about-page-pillars__intro {
@@ -366,11 +362,7 @@
 
 .about-page-place {
   padding-bottom: 1rem;
-  background: linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--fog) 80%, white) 0%,
-    color-mix(in oklab, var(--mist) 35%, var(--fog)) 100%
-  );
+  background: #d1bfab;
 }
 
 .about-page-place__panel {
@@ -379,13 +371,9 @@
   align-items: center;
   padding: 1.35rem;
   border-radius: 1.25rem;
-  border: 1px solid color-mix(in oklab, white 50%, var(--mist-deep));
-  background: linear-gradient(
-    155deg,
-    color-mix(in oklab, white 75%, transparent) 0%,
-    color-mix(in oklab, var(--fog) 60%, transparent) 100%
-  );
-  box-shadow: 0 24px 50px -38px rgba(26, 39, 28, 0.4);
+  border: 1px solid color-mix(in oklab, var(--pine) 14%, transparent);
+  background: #d1bfab;
+  box-shadow: none;
 }
 
 @media (min-width: 768px) {
