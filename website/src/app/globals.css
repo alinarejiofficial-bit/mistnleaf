@@ -986,20 +986,21 @@ a {
   background:
     linear-gradient(
       180deg,
-      transparent 42%,
-      color-mix(in oklab, var(--pine) 58%, transparent) 100%
+      transparent 28%,
+      rgba(0, 0, 0, 0.35) 68%,
+      rgba(0, 0, 0, 0.72) 100%
     ),
     radial-gradient(
       ellipse 90% 70% at 50% 120%,
-      color-mix(in oklab, var(--pine) 35%, transparent) 0%,
+      rgba(0, 0, 0, 0.45) 0%,
       transparent 70%
     );
-  opacity: 0.35;
+  opacity: 0.92;
   transition: opacity 0.55s var(--ease-out);
 }
 
 .gallery-tile:hover::after {
-  opacity: 0.85;
+  opacity: 1;
 }
 
 .gallery-tile__index {
@@ -1036,8 +1037,8 @@ a {
   bottom: 0;
   z-index: 2;
   padding: 0.85rem 0.95rem 0.95rem;
-  transform: translateY(0.35rem);
-  opacity: 0.85;
+  transform: none;
+  opacity: 1;
   transition:
     opacity 0.5s var(--ease-out),
     transform 0.5s var(--ease-out);
@@ -1051,17 +1052,20 @@ a {
 
 .gallery-tile:hover .gallery-tile__caption {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 .gallery-tile__label {
   display: block;
   font-family: var(--font-display), "Times New Roman", Georgia, serif;
-  font-size: clamp(0.95rem, 3.2vw, 1.2rem);
+  font-size: clamp(1rem, 3.2vw, 1.3rem);
+  font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.25;
-  color: var(--fog);
-  text-shadow: 0 1px 16px rgba(26, 39, 28, 0.4);
+  color: #ffffff;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.85),
+    0 2px 18px rgba(0, 0, 0, 0.65);
   text-wrap: balance;
 }
 
@@ -1072,12 +1076,12 @@ a {
   }
 
   .gallery-tile::after {
-    opacity: 0.72;
+    opacity: 0.95;
   }
 
   .gallery-tile--side .gallery-tile__label,
   .gallery-tile--square .gallery-tile__label {
-    font-size: 0.92rem;
+    font-size: 0.95rem;
   }
 }
 
