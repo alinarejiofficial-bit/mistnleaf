@@ -68,7 +68,6 @@ export function Footer({ content }: { content?: MappedSiteContent }) {
       <div className="site-footer__inner">
         <div className="site-footer__brand">
           <Logo size="footer" variant="light" href={null} />
-          <p className="site-footer__tagline">{footer?.tagline ?? siteInfo.tagline}</p>
           <p className="site-footer__about">{footer?.description ?? siteInfo.description}</p>
         </div>
 

@@ -1804,15 +1804,6 @@ a {
   max-width: 22rem;
 }
 
-.site-footer__tagline {
-  margin-top: 0.85rem;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: color-mix(in oklab, var(--fog) 58%, transparent);
-}
-
 .site-footer__about {
   margin-top: 1rem;
   font-size: 0.94rem;
