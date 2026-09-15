@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { EnquiryForm } from "@/components/contact/EnquiryForm";
-import { CtaBand } from "@/components/PageShell";
-import { site } from "@/lib/site";
+import { CmsSectionEdit } from "@/components/cms/CmsSectionEdit";
+import { PageIntro, Section } from "@/components/PageShell";
+import { getSiteContent } from "@/lib/cms/get-site-content";
 import "./contact-page.css";
 
 export const metadata: Metadata = {
@@ -14,94 +16,103 @@ type Props = PageProps<"/contact">;
 
 export default async function ContactPage({ searchParams }: Props) {
   const params = await searchParams;
+  const content = await getSiteContent();
+  const siteInfo = content.site;
+  const contact = content.contact;
   const sent = params.sent === "1";
   const missing = params.error === "missing";
 
   return (
     <>
-      <section className="contact-page">
-        <header className="contact-page__intro">
-          <p className="eyebrow">Contact</p>
-          <h1 className="contact-page__title">Contact &amp; Enquiries</h1>
-          <p className="contact-page__lead">
-            Reach the resort desk, ask about availability, or send an enquiry —
-            we will respond with next steps.
-          </p>
-        </header>
-
-        <section className="contact-page__body">
-          <div className="contact-page__grid">
-            <aside className="contact-page__details">
-              <h2 className="contact-page__heading">Resort contact</h2>
-              <dl className="contact-page__list">
-                <div className="contact-page__item">
-                  <dt>Email</dt>
-                  <dd>
-                    <a href={`mailto:${site.email}`}>{site.email}</a>
-                  </dd>
-                </div>
-                <div className="contact-page__item">
-                  <dt>Phone</dt>
-                  <dd>
-                    <a href={`tel:${site.phone.replace(/\s/g, "")}`}>
-                      {site.phone}
-                    </a>
-                  </dd>
-                </div>
-                <div className="contact-page__item">
-                  <dt>Hours</dt>
-                  <dd>{site.hours}</dd>
-                </div>
-                <div className="contact-page__item">
-                  <dt>Address</dt>
-                  <dd className="contact-page__address">
-                    {site.address.line1}
-                    <br />
-                    {site.address.line2}
-                    <br />
-                    {site.address.country}
-                  </dd>
-                </div>
-              </dl>
-              <div className="contact-page__links">
-                <Link href="/location" className="link-arrow">
-                  View location &amp; directions
-                </Link>
-                <Link href="/booking/search" className="link-arrow">
-                  Check availability
-                </Link>
+      <PageIntro
+        eyebrow="Contact"
+        title="Contact & Enquiries"
+        lead="Reach the resort desk, ask about availability, or send an enquiry — we will respond with next steps."
+      />
+      <Section className="relative pt-0">
+        <Suspense fallback={null}>
+          <CmsSectionEdit section="contact" label="Contact" />
+        </Suspense>
+        <div className="contact-layout">
+          <div className="contact-details">
+            <h2 className="contact-details__title">Resort contact</h2>
+            <dl className="contact-details__list">
+              <div className="contact-detail">
+                <dt>Email</dt>
+                <dd>
+                  <a href={`mailto:${contact.email || siteInfo.email}`}>
+                    {contact.email || siteInfo.email}
+                  </a>
+                </dd>
               </div>
-            </aside>
-
-            <div className="contact-page__panel">
-              <h2 className="contact-page__heading">Submit an enquiry</h2>
-              <p className="contact-page__panel-lead">
-                Tell us what you need — stays, transfers, experiences, or
-                general questions.
-              </p>
-              {sent ? (
-                <div className="contact-page__success" role="status">
-                  <p>
-                    Thank you. Your enquiry has been received
-                    {typeof params.id === "string" ? ` (ref ${params.id})` : ""}
-                    . Our team will follow up by email.
-                  </p>
-                  <Link href="/contact" className="link-arrow">
-                    Send another enquiry
-                  </Link>
-                </div>
-              ) : null}
-              {missing ? (
-                <p className="contact-form__error" style={{ marginTop: "1rem" }}>
-                  Please complete the required fields and try again.
-                </p>
-              ) : null}
-              {!sent ? <EnquiryForm /> : null}
+              <div className="contact-detail">
+                <dt>Phone</dt>
+                <dd>
+                  <a
+                    href={`tel:${(contact.phone || siteInfo.phone).replace(/\s/g, "")}`}
+                  >
+                    {contact.phone || siteInfo.phone}
+                  </a>
+                </dd>
+              </div>
+              <div className="contact-detail">
+                <dt>Hours</dt>
+                <dd>{siteInfo.hours}</dd>
+              </div>
+              <div className="contact-detail">
+                <dt>Address</dt>
+                <dd>
+                  {contact.addressLine1 || siteInfo.address.line1}
+                  <br />
+                  {contact.addressLine2 || siteInfo.address.line2}
+                  <br />
+                  {siteInfo.address.country}
+                </dd>
+              </div>
+            </dl>
+            {contact.checkInNote ? (
+              <p className="contact-details__note">{contact.checkInNote}</p>
+            ) : null}
+            <div className="contact-details__links">
+              <Link href="/location" className="link-arrow">
+                View location & directions
+              </Link>
+              <Link href="/booking/search" className="link-arrow">
+                Check availability
+              </Link>
             </div>
           </div>
-        </section>
-      </section>
-      <CtaBand />
+
+          <div className="contact-form-panel">
+            <h2 className="contact-form-panel__title">Submit an enquiry</h2>
+            <p className="contact-form-panel__lead">
+              Tell us what you need — stays, transfers, experiences, or general
+              questions.
+            </p>
+            {sent ? (
+              <div className="contact-form-panel__success">
+                Thank you. Your enquiry has been received
+                {typeof params.id === "string" ? ` (ref ${params.id})` : ""}.
+                Our team will follow up by email.
+              </div>
+            ) : null}
+            {missing ? (
+              <p className="contact-form-panel__error">
+                Please complete the required fields and try again.
+              </p>
+            ) : null}
+            {!sent ? (
+              <div className="mt-6">
+                <EnquiryForm />
+              </div>
+            ) : (
+              <Link href="/contact" className="contact-form-panel__again">
+                Send another enquiry
+              </Link>
+            )}
+          </div>
+        </div>
+      </Section>
     </>
   );
 }

@@ -98,15 +98,55 @@ export function toQuery(data: Partial<BookingQuery>) {
 
 export function nightsBetween(checkIn: string, checkOut: string) {
   if (!checkIn || !checkOut) return 0;
-  const start = new Date(checkIn);
-  const end = new Date(checkOut);
+  const start = parseDateOnly(checkIn);
+  const end = parseDateOnly(checkOut);
+  if (!start || !end) return 0;
   const diff = end.getTime() - start.getTime();
-  if (Number.isNaN(diff) || diff <= 0) return 0;
+  if (diff <= 0) return 0;
   return Math.round(diff / (1000 * 60 * 60 * 24));
+}
+
+function parseDateOnly(iso: string) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  return new Date(Date.UTC(year, month - 1, day));
+}
+
+const MONTHS_SHORT = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sept",
+  "Oct",
+  "Nov",
+  "Dec",
+] as const;
+
+function formatDateOnly(iso: string) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
+  if (!match) return iso;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  return `${day} ${MONTHS_SHORT[month - 1]} ${year}`;
+}
+
+export function formatStayRange(checkIn: string, checkOut: string) {
+  if (!checkIn || !checkOut) return "Dates not selected";
+  return `${formatDateOnly(checkIn)} → ${formatDateOnly(checkOut)}`;
 }
 
 export function getSelectedAddons(addonCsv: string) {
   const ids = parseAddonIds(addonCsv);
+  if (ids.length === 0) return [];
   const catalog = db().addons.filter((a) => a.active);
   return catalog.filter((a) => ids.includes(a.id));
 }
@@ -120,8 +160,8 @@ export function calcStayTotal(
   const addonTotal = selected.reduce((sum, item) => sum + item.price, 0);
   const roomSubtotal = room.price * nights;
   const subtotal = roomSubtotal + addonTotal;
-  const taxes = Math.round(subtotal * 0.12);
-  const total = subtotal + taxes;
+  const taxes = 0;
+  const total = subtotal;
   return {
     roomSubtotal,
     addonTotal,
@@ -131,16 +171,6 @@ export function calcStayTotal(
     perNight: room.price,
     addons: selected,
   };
-}
-
-export function formatStayRange(checkIn: string, checkOut: string) {
-  if (!checkIn || !checkOut) return "Dates not selected";
-  const fmt = new Intl.DateTimeFormat("en-IN", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
-  return `${fmt.format(new Date(checkIn))} → ${fmt.format(new Date(checkOut))}`;
 }
 
 export function getAvailability(

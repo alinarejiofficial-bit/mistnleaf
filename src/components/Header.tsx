@@ -28,54 +28,57 @@ export function Header() {
 
   return (
     <header
-      className={`site-header fixed inset-x-0 top-0 z-50 ${
-        scrolled || open ? "is-scrolled" : ""
+      className={`site-header fixed inset-x-0 top-0 z-50 transition duration-300 ${
+        scrolled || open
+          ? "border-b border-line/70 bg-fog/95 shadow-[0_10px_40px_-28px_rgba(26,39,28,0.45)] backdrop-blur-md"
+          : "bg-fog/80 backdrop-blur-md"
       }`}
     >
       <div className="site-header__inner">
-        <div className="site-header__brand">
+        <div className="mr-auto shrink-0">
           <Logo size="header" priority onClick={() => setOpen(false)} />
         </div>
 
-        <div className="site-header__end">
-          <nav className="site-header__nav" aria-label="Main">
-            {navLinks.map((link) => {
-              const active =
-                pathname === link.href || pathname.startsWith(`${link.href}/`);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`site-header__link ${active ? "is-active" : ""}`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
-
-          <Link
-            href="/booking/search"
-            className="site-header__cta inline-flex shrink-0 items-center justify-center rounded-xl bg-pine px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-fog no-underline shadow-[inset_0_0_0_1px_rgba(255,255,255,0.12)] transition hover:bg-pine-soft"
-          >
+        <nav className="site-header__nav">
+          {navLinks.map((link) => {
+            const active =
+              pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`site-nav-link transition ${
+                  active
+                    ? "text-black"
+                    : "text-black hover:text-pine"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+          <Link href="/booking/search" className="site-nav-cta site-nav-book">
             Book my room
           </Link>
+        </nav>
 
-          <button
-            type="button"
-            className="site-header__menu inline-flex shrink-0 items-center justify-center rounded-xl border border-line bg-white/40 px-4 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-pine transition hover:bg-white/60"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setOpen((value) => !value)}
-          >
-            {open ? "Close" : "Menu"}
-          </button>
-        </div>
+        <button
+          type="button"
+          className="site-nav-cta inline-flex min-h-9 shrink-0 items-center justify-center border border-line px-3.5 py-2 text-black transition hover:bg-sand-cool/60 xl:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-nav"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? "Close" : "Menu"}
+        </button>
       </div>
 
       {open ? (
-        <div id="mobile-nav" className="site-header__drawer">
-          <nav className="site-header__drawer-nav" aria-label="Mobile">
+        <div
+          id="mobile-nav"
+          className="border-t border-line bg-fog/95 px-[var(--page-gutter)] py-5 backdrop-blur-md xl:hidden"
+        >
+          <nav className="mx-auto flex max-w-[var(--page-max)] flex-col gap-0.5">
             {navLinks.map((link) => {
               const active =
                 pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -83,8 +86,8 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`site-header__drawer-link ${
-                    active ? "is-active" : ""
+                  className={`site-nav-link border-b border-line/60 py-3.5 ${
+                    active ? "text-black" : "text-black hover:text-pine"
                   }`}
                   onClick={() => setOpen(false)}
                 >
@@ -94,7 +97,7 @@ export function Header() {
             })}
             <Link
               href="/booking/search"
-              className="site-header__cta site-header__cta--block inline-flex w-full items-center justify-center rounded-xl bg-pine px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-fog no-underline"
+              className="site-nav-cta site-nav-book mt-4 w-full"
               onClick={() => setOpen(false)}
             >
               Book my room

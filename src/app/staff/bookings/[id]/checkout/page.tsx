@@ -106,10 +106,6 @@ export default async function StaffCheckoutPage({
                 <dd>-{formatInr(booking.discount)}</dd>
               </div>
               <div className="flex justify-between border-b border-[#ecefeb] py-2">
-                <dt className="text-[#667069]">Taxes</dt>
-                <dd>{formatInr(booking.taxes)}</dd>
-              </div>
-              <div className="flex justify-between border-b border-[#ecefeb] py-2">
                 <dt className="text-[#667069]">Amount paid</dt>
                 <dd>{formatInr(booking.amountPaid)}</dd>
               </div>

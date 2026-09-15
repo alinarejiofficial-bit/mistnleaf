@@ -39,7 +39,7 @@ export const stayInfo = {
     "Early check-in may be arranged when the room is ready. Please share your arrival time when you book.",
   checkOutNote:
     "Late check-out is subject to availability and may carry a fee on peak days.",
-  taxesNote: "Rates are per room per night. Taxes extra as applicable.",
+  taxesNote: "Rates are per room per night.",
 } as const;
 
 export const rooms: Room[] = [

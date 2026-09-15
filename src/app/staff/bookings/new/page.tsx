@@ -148,7 +148,7 @@ export default async function StaffNewBookingPage({ searchParams }: Props) {
               </p>
               <p className="mt-2 text-sm text-[#1f332b]">
                 {units.length} unit{units.length === 1 ? "" : "s"} open · quote{" "}
-                {quote ? formatInr(quote.total) : "—"} (incl. tax)
+                {quote ? formatInr(quote.total) : "—"}
               </p>
               {units.length === 0 ? (
                 <p className="mt-3 text-sm text-[#8a5a4a]">

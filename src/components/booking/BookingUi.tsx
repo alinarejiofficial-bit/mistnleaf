@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import {
   calcStayTotal,
   formatInr,
@@ -38,8 +39,16 @@ export function StaySummaryCard({ query }: { query: BookingQuery }) {
           <dt>Room</dt>
           <dd className="text-right text-pine">{room?.name || "Not selected"}</dd>
         </div>
+        {totals ? (
+          <div className="flex justify-between gap-3 border-t border-line pt-3">
+            <dt>
+              Room · {formatInr(totals.perNight)} × {nights}
+            </dt>
+            <dd className="text-pine">{formatInr(totals.roomSubtotal)}</dd>
+          </div>
+        ) : null}
         {totals && totals.addons.length > 0 ? (
-          <div className="border-t border-line pt-3">
+          <div>
             <dt className="mb-2 text-muted">Add-ons</dt>
             <dd className="space-y-1">
               {totals.addons.map((addon) => (
@@ -118,7 +127,29 @@ export function BookingHiddens({
 
 export const fieldClass = "input-field";
 
-export const primaryBtnClass = "booking-btn";
+export const primaryBtnClass =
+  "inline-flex min-h-11 items-center justify-center bg-pine px-7 py-3 text-[0.8rem] font-medium uppercase tracking-[0.08em] text-fog transition hover:bg-pine-soft disabled:opacity-50";
 
 export const ghostBtnClass =
   "inline-flex min-h-11 items-center justify-center border border-line px-7 py-3 text-[0.8rem] font-medium uppercase tracking-[0.08em] text-pine transition hover:bg-sand-cool/60";
+
+export function BookingSubmitButton({
+  children,
+  className = primaryBtnClass,
+  disabled = false,
+}: {
+  children: ReactNode;
+  className?: string;
+  disabled?: boolean;
+}) {
+  return (
+    <button
+      type="submit"
+      disabled={disabled}
+      className={className}
+      suppressHydrationWarning
+    >
+      {children}
+    </button>
+  );
+}

@@ -3,8 +3,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { BookingStepper } from "@/components/booking/BookingStepper";
 import {
+  BookingSubmitButton,
   ghostBtnClass,
-  primaryBtnClass,
   StaySummaryCard,
 } from "@/components/booking/BookingUi";
 import { PageIntro, Section } from "@/components/PageShell";
@@ -16,7 +16,6 @@ import {
   toQuery,
 } from "@/lib/booking";
 import { goToSelect } from "../actions";
-import "../booking-page.css";
 
 export const metadata: Metadata = {
   title: "Availability · Booking",
@@ -53,7 +52,7 @@ export default async function BookingAvailabilityPage({ searchParams }: Props) {
             prevented). Please choose another room or dates.
           </p>
         ) : null}
-        <div className="grid gap-8 lg:grid-cols-[1fr_280px]">
+        <div className="grid gap-8 lg:grid-cols-[1fr_280px] lg:items-start">
           <div className="space-y-4">
             {availability.map(({ room, available, status, estimate }) => (
               <article
@@ -94,13 +93,9 @@ export default async function BookingAvailabilityPage({ searchParams }: Props) {
               {query.room ? (
                 <input type="hidden" name="room" value={query.room} />
               ) : null}
-              <button
-                type="submit"
-                className={primaryBtnClass}
-                disabled={openCount === 0}
-              >
+              <BookingSubmitButton disabled={openCount === 0}>
                 Continue to room selection
-              </button>
+              </BookingSubmitButton>
               <Link href={`/booking/search?${q}`} className={ghostBtnClass}>
                 Edit search
               </Link>

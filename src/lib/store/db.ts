@@ -146,8 +146,8 @@ export function quoteStay(input: {
     if (offer) discount = Math.round(subtotal * (offer.discountPercent / 100));
   }
   const taxable = subtotal - discount;
-  const taxes = Math.round(taxable * 0.12);
-  const total = taxable + taxes;
+  const taxes = 0;
+  const total = taxable;
   return { nights, subtotal, discount, taxes, total, baseRate: type.baseRate };
 }
 

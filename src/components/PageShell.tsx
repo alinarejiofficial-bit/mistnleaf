@@ -8,7 +8,7 @@ type PageIntroProps = {
 
 export function PageIntro({ title, lead, eyebrow }: PageIntroProps) {
   return (
-    <header className="mx-auto max-w-3xl px-5 pb-8 pt-24 text-center sm:px-6 md:pb-12 md:pt-36">
+    <header className="mx-auto max-w-3xl px-5 pb-6 pt-24 text-center sm:px-6 md:pb-8 md:pt-28">
       {eyebrow ? (
         <div className="mb-4 flex justify-center">
           <p className="eyebrow inline-flex items-center">{eyebrow}</p>
@@ -33,7 +33,7 @@ export function Section({
 }) {
   return (
     <section
-      className={`mx-auto w-full max-w-6xl px-5 py-14 sm:px-6 sm:py-20 md:py-28 ${className}`}
+      className={`mx-auto w-full max-w-6xl px-5 py-8 sm:px-6 sm:py-10 md:py-12 ${className}`}
     >
       {children}
     </section>
@@ -44,14 +44,6 @@ export function CtaBand() {
   return (
     <section className="cta-band" aria-labelledby="cta-band-title">
       <div className="cta-band__panel">
-        <div
-          aria-hidden
-          className="cta-band__glow cta-band__glow--a"
-        />
-        <div
-          aria-hidden
-          className="cta-band__glow cta-band__glow--b"
-        />
         <div className="cta-band__content">
           <p className="cta-band__eyebrow">Reserve</p>
           <h2 id="cta-band-title" className="cta-band__title">
