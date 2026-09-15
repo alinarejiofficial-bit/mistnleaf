@@ -101,6 +101,7 @@ export type PublishedCmsContent = {
     description: string;
     details: string;
     priceFrom: number;
+    priceLabel?: string;
     terms: string[];
     bookCtaLabel: string;
     bookCtaHref: string;
