@@ -15,9 +15,6 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-const fieldClass =
-  "mt-1 w-full border border-line bg-[#d1bfab] px-3 py-2.5 text-black outline-none transition focus:border-black";
-
 export function EnquiryForm() {
   const {
     register,
@@ -36,45 +33,41 @@ export function EnquiryForm() {
 
   return (
     <form
-      className="space-y-4"
+      className="enquiry-form"
       onSubmit={handleSubmit(async (values) => {
         const data = new FormData();
         Object.entries(values).forEach(([key, value]) => data.set(key, value));
         await submitEnquiryAction(data);
       })}
     >
-      <label className="block text-sm text-black">
+      <label className="enquiry-form__field">
         Name *
-        <input {...register("name")} className={fieldClass} />
+        <input {...register("name")} autoComplete="name" />
         {errors.name ? (
-          <span className="mt-1 block text-xs text-black">
-            {errors.name.message}
-          </span>
+          <span className="enquiry-form__error">{errors.name.message}</span>
         ) : null}
       </label>
-      <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm text-black">
+
+      <div className="enquiry-form__row">
+        <label className="enquiry-form__field">
           Email *
-          <input type="email" {...register("email")} className={fieldClass} />
+          <input type="email" {...register("email")} autoComplete="email" />
           {errors.email ? (
-            <span className="mt-1 block text-xs text-black">
-              {errors.email.message}
-            </span>
+            <span className="enquiry-form__error">{errors.email.message}</span>
           ) : null}
         </label>
-        <label className="block text-sm text-black">
+        <label className="enquiry-form__field">
           Phone *
-          <input {...register("phone")} className={fieldClass} />
+          <input {...register("phone")} autoComplete="tel" />
           {errors.phone ? (
-            <span className="mt-1 block text-xs text-black">
-              {errors.phone.message}
-            </span>
+            <span className="enquiry-form__error">{errors.phone.message}</span>
           ) : null}
         </label>
       </div>
-      <label className="block text-sm text-black">
+
+      <label className="enquiry-form__field">
         Subject *
-        <select {...register("subject")} className={fieldClass}>
+        <select {...register("subject")}>
           <option>Stay enquiry</option>
           <option>Availability question</option>
           <option>Directions / transfers</option>
@@ -82,22 +75,24 @@ export function EnquiryForm() {
           <option>Other</option>
         </select>
       </label>
-      <label className="block text-sm text-black">
+
+      <label className="enquiry-form__field">
         Message *
-        <textarea rows={5} {...register("message")} className={fieldClass} />
+        <textarea rows={5} {...register("message")} />
         {errors.message ? (
-          <span className="mt-1 block text-xs text-black">
-            {errors.message.message}
-          </span>
+          <span className="enquiry-form__error">{errors.message.message}</span>
         ) : null}
       </label>
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="min-h-11 bg-[#1a271c] px-6 py-3 text-[0.8rem] font-medium uppercase tracking-[0.08em] text-[#f5efe6] transition hover:bg-[#2a3b30] disabled:opacity-60"
-      >
-        {isSubmitting ? "Sending…" : "Submit enquiry"}
-      </button>
+
+      <div className="enquiry-form__actions">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="enquiry-form__submit"
+        >
+          {isSubmitting ? "Sending…" : "Submit enquiry"}
+        </button>
+      </div>
     </form>
   );
 }

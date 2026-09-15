@@ -102,9 +102,7 @@ export default async function ContactPage({ searchParams }: Props) {
               </p>
             ) : null}
             {!sent ? (
-              <div className="mt-6">
-                <EnquiryForm />
-              </div>
+              <EnquiryForm />
             ) : (
               <Link href="/contact" className="contact-form-panel__again">
                 Send another enquiry
