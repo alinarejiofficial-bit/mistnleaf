@@ -45,10 +45,10 @@ export default async function LocationPage() {
             priority
           />
         </div>
-        <div className="relative z-[2] mx-auto flex min-h-[26rem] max-w-6xl flex-col justify-end px-6 py-16 md:min-h-[32rem] md:py-20">
-          <div className="max-w-xl text-fog">
+        <div className="relative z-[2] mx-auto flex min-h-[26rem] max-w-6xl flex-col items-center justify-center px-6 py-16 text-center md:min-h-[32rem] md:py-20">
+          <div className="location-panel__copy max-w-xl">
             <p className="font-display text-3xl md:text-4xl">{siteInfo.name}</p>
-            <p className="mt-4 leading-relaxed text-fog/80">
+            <p className="mt-4 leading-relaxed">
               {location.addressLine1}
               <br />
               {location.addressLine2}
