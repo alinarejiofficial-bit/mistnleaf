@@ -51,7 +51,7 @@ export function Logo({
 
   const image = (
     <Image
-      src={`${src}?v=6`}
+      src={`${src}?v=7`}
       alt="Mistnleaf — Nature in Every Breath"
       width={width}
       height={height}

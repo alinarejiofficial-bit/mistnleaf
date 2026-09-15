@@ -38,6 +38,69 @@ function pickImage(url: string | undefined, fallback: string) {
   return value;
 }
 
+/** Map CMS footer hashes / aliases onto real Next.js routes. */
+const FOOTER_PATH_ALIASES: Record<string, string> = {
+  "#offers": "/offers",
+  "#faqs": "/faqs",
+  "#contact": "/contact",
+  "#book": "/booking/search",
+  "#rooms": "/rooms",
+  "#experiences": "/experiences",
+  "#amenities": "/amenities",
+  "#dining": "/dining",
+  "#gallery": "/gallery",
+  "#location": "/location",
+  "#about": "/about",
+  "/login": "/staff/login",
+  "/staff": "/staff/login",
+};
+
+const FOOTER_LABEL_ALIASES: Record<string, string> = {
+  about: "/about",
+  rooms: "/rooms",
+  experiences: "/experiences",
+  amenities: "/amenities",
+  dining: "/dining",
+  gallery: "/gallery",
+  offers: "/offers",
+  faqs: "/faqs",
+  contact: "/contact",
+  "contact / enquiry": "/contact",
+  "check availability": "/booking/search",
+  "things to do": "/things-to-do",
+  "site guide": "/explore",
+  "privacy policy": "/privacy",
+  "terms & conditions": "/terms",
+  "cancellation policy": "/cancellation",
+  "staff login": "/staff/login",
+};
+
+function normalizeFooterLinks(
+  links: Array<{ href?: string; label?: string }> | undefined,
+  fallback: Array<{ href: string; label: string }>,
+) {
+  const source = links?.length ? links : fallback;
+  const normalized: Array<{ href: string; label: string }> = [];
+
+  for (const item of source) {
+    const label = (item.label || "").trim();
+    let href = (item.href || "").trim();
+    if (!label) continue;
+
+    href =
+      FOOTER_PATH_ALIASES[href] ||
+      FOOTER_LABEL_ALIASES[label.toLowerCase()] ||
+      href;
+
+    if (!href || href.startsWith("#")) continue;
+    if (!href.startsWith("/") && !href.startsWith("http")) continue;
+
+    normalized.push({ href, label });
+  }
+
+  return normalized.length ? normalized : fallback;
+}
+
 /** Prefer remote Unsplash fallbacks so empty CMS images still render on the public site. */
 const galleryFallbackSrcs = [
   media.hero,
@@ -653,18 +716,28 @@ export function mapCmsToSiteContent(cms: PublishedCmsContent): MappedSiteContent
       tagline: cms.footer.brandEyebrow || cms.footer.tagline,
       description: cms.footer.brandDescription,
       copyright: cms.footer.copyright,
-      exploreLinks: cms.footer.exploreLinks.map((link) => ({
-        href: link.href.startsWith("#") ? link.href : link.href,
-        label: link.label,
-      })),
-      planLinks: cms.footer.planLinks.map((link) => ({
-        href: link.href.startsWith("#") ? link.href : link.href,
-        label: link.label,
-      })),
-      policyLinks: cms.footer.policyLinks.map((link) => ({
-        href: link.href,
-        label: link.label,
-      })),
+      exploreLinks: normalizeFooterLinks(cms.footer.exploreLinks, [
+        { href: "/about", label: "About" },
+        { href: "/rooms", label: "Rooms" },
+        { href: "/experiences", label: "Experiences" },
+        { href: "/amenities", label: "Amenities" },
+        { href: "/dining", label: "Dining" },
+        { href: "/gallery", label: "Gallery" },
+      ]),
+      planLinks: normalizeFooterLinks(cms.footer.planLinks, [
+        { href: "/offers", label: "Offers" },
+        { href: "/things-to-do", label: "Things to Do" },
+        { href: "/explore", label: "Site guide" },
+        { href: "/faqs", label: "FAQs" },
+        { href: "/contact", label: "Contact / Enquiry" },
+        { href: "/booking/search", label: "Check availability" },
+      ]),
+      policyLinks: normalizeFooterLinks(cms.footer.policyLinks, [
+        { href: "/privacy", label: "Privacy Policy" },
+        { href: "/terms", label: "Terms & Conditions" },
+        { href: "/cancellation", label: "Cancellation Policy" },
+        { href: "/staff/login", label: "Staff login" },
+      ]),
     },
     fromCms: true,
   };

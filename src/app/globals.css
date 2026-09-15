@@ -1804,20 +1804,8 @@ a {
   max-width: 22rem;
 }
 
-.site-footer__brand .site-logo--light img,
 .site-footer__brand .site-logo img {
-  filter:
-    brightness(1.12)
-    contrast(1.18)
-    drop-shadow(0 1px 0 color-mix(in oklab, var(--fog) 35%, transparent))
-    drop-shadow(0 8px 18px color-mix(in oklab, black 28%, transparent));
-}
-
-.site-footer__about {
-  margin-top: 1.15rem;
-  font-size: 0.94rem;
-  line-height: 1.7;
-  color: color-mix(in oklab, var(--fog) 72%, transparent);
+  opacity: 0.85;
 }
 
 .site-footer__contact {
@@ -1850,6 +1838,17 @@ a {
 }
 
 .site-footer__contact a:hover {
+  color: var(--fog);
+}
+
+.site-footer__address-link {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.site-footer__address-link:hover {
   color: var(--fog);
 }
 

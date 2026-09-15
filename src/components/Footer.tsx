@@ -43,7 +43,11 @@ function FooterColumn({
       <p className="site-footer__heading">{title}</p>
       <nav className="site-footer__nav" aria-label={title}>
         {links.map((link) => (
-          <Link key={link.href} href={link.href} className="site-footer__link">
+          <Link
+            key={`${link.label}-${link.href}`}
+            href={link.href}
+            className="site-footer__link"
+          >
             {link.label}
           </Link>
         ))}
@@ -67,8 +71,7 @@ export function Footer({ content }: { content?: MappedSiteContent }) {
     <footer className="site-footer relative">
       <div className="site-footer__inner">
         <div className="site-footer__brand">
-          <Logo size="footer" variant="light" href={null} />
-          <p className="site-footer__about">{footer?.description ?? siteInfo.description}</p>
+          <Logo size="footer" variant="light" href="/" />
         </div>
 
         <div className="site-footer__col">
@@ -76,9 +79,11 @@ export function Footer({ content }: { content?: MappedSiteContent }) {
           <address className="site-footer__contact not-italic">
             <p className="site-footer__contact-line">
               <span className="site-footer__contact-label">Address</span>
-              {contact?.addressLine1 ?? siteInfo.address.line1}
-              <br />
-              {contact?.addressLine2 ?? siteInfo.address.line2}
+              <Link href="/location" className="site-footer__address-link">
+                {contact?.addressLine1 ?? siteInfo.address.line1}
+                <br />
+                {contact?.addressLine2 ?? siteInfo.address.line2}
+              </Link>
             </p>
             <p className="site-footer__contact-line">
               <span className="site-footer__contact-label">Email</span>
