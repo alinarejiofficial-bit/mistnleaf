@@ -6,15 +6,15 @@
   --fog: #d1bfab;
   --mist: #e4d8c8;
   --mist-deep: #b8a690;
-  --lichen: #8a7b68;
-  --leaf: #3d4a38;
-  --ink: #1a271c;
-  --muted: #5c554a;
+  --lichen: #000000;
+  --leaf: #000000;
+  --ink: #000000;
+  --muted: #000000;
   --sand-cool: #c9b8a4;
   --line: color-mix(in oklab, var(--pine) 18%, transparent);
   --glow-warm: #e8d4b8;
   --background: var(--fog);
-  --foreground: var(--ink);
+  --foreground: #000000;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --page-gutter: 1.25rem;
   --page-max: 72rem;
@@ -58,11 +58,21 @@ html {
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: #000000;
   font-family: var(--font-body), system-ui, sans-serif;
   font-feature-settings: "ss01" on, "cv11" on;
   letter-spacing: 0.01em;
   line-height: 1.6;
+}
+
+/* Force content text black; light-on-dark utilities (text-fog) still win where set */
+.text-pine,
+.text-pine-soft,
+.hover\:text-pine:hover,
+.hover\:text-pine-soft:hover,
+.group:hover .group-hover\:text-pine,
+.group:hover .group-hover\:text-pine-soft {
+  color: #000000 !important;
 }
 
 ::selection {
@@ -93,8 +103,8 @@ a {
 
 .site-nav-link {
   font-family: var(--font-body), system-ui, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -119,7 +129,7 @@ a {
   border-radius: 0.75rem;
   background: var(--pine);
   padding: 0.7rem 1.4rem;
-  color: var(--fog);
+  color: #f5efe6;
   box-shadow: inset 0 0 0 1px color-mix(in oklab, white 12%, transparent);
   transition:
     background-color 220ms var(--ease-out),
