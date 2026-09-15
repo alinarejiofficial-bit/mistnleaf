@@ -33,11 +33,10 @@ const defaultPolicies = [
 ];
 
 function ensureHomeLink(links: { href: string; label: string }[]) {
-  const hasHome = links.some(
-    (link) => link.href === "/" || link.label.toLowerCase() === "home",
+  const withoutHome = links.filter(
+    (link) => link.href !== "/" && link.label.toLowerCase() !== "home",
   );
-  if (hasHome) return links;
-  return [{ href: "/", label: "Home" }, ...links];
+  return [{ href: "/", label: "Home" }, ...withoutHome];
 }
 
 function FooterColumn({
@@ -51,15 +50,23 @@ function FooterColumn({
     <div className="site-footer__col">
       <p className="site-footer__heading">{title}</p>
       <nav className="site-footer__nav" aria-label={title}>
-        {links.map((link) => (
-          <Link
-            key={`${link.label}-${link.href}`}
-            href={link.href}
-            className="site-footer__link"
-          >
-            {link.label}
-          </Link>
-        ))}
+        {links.map((link) => {
+          const href =
+            link.label.toLowerCase() === "home" || link.href === "/"
+              ? "/"
+              : link.href;
+
+          return (
+            <Link
+              key={`${link.label}-${href}`}
+              href={href}
+              className="site-footer__link"
+              prefetch
+            >
+              {link.label}
+            </Link>
+          );
+        })}
       </nav>
     </div>
   );

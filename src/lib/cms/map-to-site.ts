@@ -40,6 +40,10 @@ function pickImage(url: string | undefined, fallback: string) {
 
 /** Map CMS footer hashes / aliases onto real Next.js routes. */
 const FOOTER_PATH_ALIASES: Record<string, string> = {
+  "#": "/",
+  "#home": "/",
+  "#top": "/",
+  "/home": "/",
   "#offers": "/offers",
   "#faqs": "/faqs",
   "#contact": "/contact",
@@ -88,10 +92,14 @@ function normalizeFooterLinks(
     let href = (item.href || "").trim();
     if (!label) continue;
 
-    href =
-      FOOTER_PATH_ALIASES[href] ||
-      FOOTER_LABEL_ALIASES[label.toLowerCase()] ||
-      href;
+    if (label.toLowerCase() === "home") {
+      href = "/";
+    } else {
+      href =
+        FOOTER_PATH_ALIASES[href] ||
+        FOOTER_LABEL_ALIASES[label.toLowerCase()] ||
+        href;
+    }
 
     if (!href || href.startsWith("#")) continue;
     if (!href.startsWith("/") && !href.startsWith("http")) continue;
