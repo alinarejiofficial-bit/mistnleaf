@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { media } from "@/lib/media";
 
-/** Tight-cropped lockup aspect (913 × 548) */
-const LOGO_ASPECT = 913 / 548;
+/** Tight-cropped lockup aspect (987 × 584) */
+const LOGO_ASPECT = 987 / 584;
 
 const sizes = {
   header: {
@@ -51,7 +51,7 @@ export function Logo({
 
   const image = (
     <Image
-      src={`${src}?v=4`}
+      src={`${src}?v=5`}
       alt="Mistnleaf — Nature in Every Breath"
       width={width}
       height={height}
