@@ -61,13 +61,18 @@ export function Logo({
     />
   );
 
-  const wrapClass = `site-logo inline-flex shrink-0 items-center${
+  const wrapClass = `site-logo inline-flex shrink-0 items-center outline-none${
     variant === "light" ? " site-logo--light" : ""
   }`;
 
   if (href) {
     return (
-      <Link href={href} className={wrapClass} onClick={onClick}>
+      <Link
+        href={href}
+        className={wrapClass}
+        onClick={onClick}
+        style={{ border: "none", outline: "none", boxShadow: "none" }}
+      >
         {image}
       </Link>
     );

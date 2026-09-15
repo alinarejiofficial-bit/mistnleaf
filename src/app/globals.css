@@ -155,6 +155,25 @@ a {
   transform: translateY(0);
 }
 
+/* Logo lockup — no focus/link box around the mark */
+.site-logo,
+.site-logo:focus,
+.site-logo:focus-visible,
+.site-logo:active {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site-logo img,
+a.site-logo img {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
 .site-header__inner {
   display: flex;
   width: 100%;
