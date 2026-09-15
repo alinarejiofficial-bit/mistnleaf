@@ -394,7 +394,9 @@ export function mapCmsToSiteContent(cms: PublishedCmsContent): MappedSiteContent
     valid: item.terms.join(" · ") || stripHtml(item.details),
     priceFrom: item.priceFrom,
     priceLabel: item.priceLabel || "FROM",
-    bookCtaLabel: item.bookCtaLabel || "Book package",
+    bookCtaLabel:
+      (item.bookCtaLabel || "Book package").replace(/\s*→+\s*$/u, "").trim() ||
+      "Book package",
     bookCtaHref: item.bookCtaHref || "/booking/search",
   });
 
