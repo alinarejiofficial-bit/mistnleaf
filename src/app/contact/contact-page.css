@@ -60,9 +60,7 @@
 .contact-detail a {
   color: #000000;
   font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 0.28em;
-  text-decoration-thickness: 1.5px;
+  text-decoration: none;
 }
 
 .contact-detail a:hover {
