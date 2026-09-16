@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import {
+  getAvailability,
   getRoom,
   nightsBetween,
   parseAddonIds,
@@ -28,8 +29,29 @@ function fromForm(formData: FormData) {
 export async function goToAvailability(formData: FormData) {
   const query = fromForm(formData);
   if (!requireSearch(query)) {
-    redirect("/booking/search?error=dates");
+    redirect(
+      `/booking/search?${toQuery({ room: query.room, locked: query.locked })}&error=dates`,
+    );
   }
+
+  // Room already chosen (e.g. Book now) — skip room selection.
+  if (query.room && getRoom(query.room)) {
+    const guests = Number(query.guests) || 1;
+    const option = getAvailability(
+      query.checkIn,
+      query.checkOut,
+      guests,
+    ).find((item) => item.room.slug === query.room);
+
+    if (option?.available) {
+      redirect(`/booking/add-ons?${toQuery({ ...query, locked: "1" })}`);
+    }
+
+    redirect(
+      `/booking/search?${toQuery({ ...query, locked: "1" })}&error=unavailable`,
+    );
+  }
+
   redirect(`/booking/select?${toQuery(query)}`);
 }
 

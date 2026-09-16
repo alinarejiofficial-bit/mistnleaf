@@ -7,13 +7,19 @@ type Props = {
 };
 
 export function BookingStepper({ current, query = "" }: Props) {
-  const currentIndex = bookingSteps.findIndex((step) => step.key === current);
+  const params = new URLSearchParams(query);
+  const roomLocked = params.get("locked") === "1" && Boolean(params.get("room"));
+  const steps = roomLocked
+    ? bookingSteps.filter((step) => step.key !== "select")
+    : bookingSteps;
+
+  const currentIndex = steps.findIndex((step) => step.key === current);
   const suffix = query ? `?${query}` : "";
 
   return (
     <nav aria-label="Booking progress" className="booking-stepper">
       <ol className="booking-stepper__list">
-        {bookingSteps.map((step, index) => {
+        {steps.map((step, index) => {
           const done = index < currentIndex;
           const active = index === currentIndex;
           const reachable = index <= currentIndex;

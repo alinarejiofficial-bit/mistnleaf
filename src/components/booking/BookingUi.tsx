@@ -102,6 +102,9 @@ export function BookingHiddens({
       <input type="hidden" name="checkOut" value={query.checkOut} />
       <input type="hidden" name="guests" value={query.guests} />
       {query.room ? <input type="hidden" name="room" value={query.room} /> : null}
+      {query.locked === "1" ? (
+        <input type="hidden" name="locked" value="1" />
+      ) : null}
       {query.addons ? (
         <input type="hidden" name="addons" value={query.addons} />
       ) : null}

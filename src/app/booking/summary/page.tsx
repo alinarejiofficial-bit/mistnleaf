@@ -38,12 +38,13 @@ export default async function BookingSummaryPage({ searchParams }: Props) {
   const nights = nightsBetween(query.checkIn, query.checkOut);
   const totals = calcStayTotal(room, nights, query.addons);
   const q = toQuery(query);
+  const locked = query.locked === "1";
 
   return (
     <>
       <BookingStepper current="summary" query={q} />
       <PageIntro
-        eyebrow="Step 5"
+        eyebrow={locked ? "Step 4" : "Step 5"}
         title="Price Calculation"
         lead="Review your stay total before payment."
       />

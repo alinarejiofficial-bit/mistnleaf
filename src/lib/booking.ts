@@ -33,6 +33,8 @@ export type BookingQuery = {
   checkOut: string;
   guests: string;
   room: string;
+  /** When "1", room was chosen before search — skip room selection. */
+  locked: string;
   addons: string;
   name: string;
   email: string;
@@ -65,6 +67,7 @@ export function parseBookingQuery(
     checkOut: param(params, "checkOut"),
     guests: param(params, "guests", "2"),
     room: param(params, "room"),
+    locked: param(params, "locked") === "1" ? "1" : "",
     addons: param(params, "addons"),
     name: param(params, "name"),
     email: param(params, "email"),

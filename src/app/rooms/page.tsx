@@ -65,7 +65,7 @@ export default async function RoomsPage() {
                     View details
                   </ButtonLink>
                   <Link
-                    href={`/booking/search?room=${room.slug}`}
+                    href={`/booking/search?room=${room.slug}&locked=1`}
                     className="link-arrow"
                   >
                     Book now

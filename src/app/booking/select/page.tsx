@@ -25,6 +25,11 @@ export default async function BookingSelectPage({ searchParams }: Props) {
     redirect("/booking/search");
   }
 
+  // Locked room bookings skip this step.
+  if (query.locked === "1" && query.room) {
+    redirect(`/booking/add-ons?${toQuery(query)}`);
+  }
+
   const guests = Number(query.guests) || 1;
   const options = getAvailability(query.checkIn, query.checkOut, guests).filter(
     (item) => item.available,

@@ -31,7 +31,11 @@ function pickImage(url: string | undefined, fallback: string) {
   ) {
     return value;
   }
-  // CMS uploads are stored on the admin host (e.g. /uploads/cms/...).
+  // Public-site static assets — keep relative to this app.
+  if (value.startsWith("/images/")) {
+    return value;
+  }
+  // CMS uploads are stored on the admin host or Django media root.
   if (value.startsWith("/")) {
     return `${getCmsAdminBase()}${value}`;
   }

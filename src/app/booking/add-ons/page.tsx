@@ -33,12 +33,14 @@ export default async function BookingAddonsPage({ searchParams }: Props) {
     .map((a) => ({ id: a.id, name: a.name, price: a.price }));
   const initialSelected = parseAddonIds(query.addons);
   const q = toQuery(query);
+  const locked = query.locked === "1";
+  const backHref = locked ? `/booking/search?${q}` : `/booking/select?${q}`;
 
   return (
     <>
       <BookingStepper current="addons" query={q} />
       <PageIntro
-        eyebrow="Step 3"
+        eyebrow={locked ? "Step 2" : "Step 3"}
         title="Packages & Add-ons"
         lead="Optional extras for your stay. Continue without selecting any if you prefer."
       />
@@ -47,7 +49,7 @@ export default async function BookingAddonsPage({ searchParams }: Props) {
           query={query}
           catalog={catalog}
           initialSelected={initialSelected}
-          backHref={`/booking/select?${q}`}
+          backHref={backHref}
           action={goToGuest}
         />
       </Section>

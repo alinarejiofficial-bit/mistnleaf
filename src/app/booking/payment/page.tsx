@@ -38,12 +38,13 @@ export default async function BookingPaymentPage({ searchParams }: Props) {
   const nights = nightsBetween(query.checkIn, query.checkOut);
   const totals = calcStayTotal(room, nights, query.addons);
   const q = toQuery(query);
+  const locked = query.locked === "1";
 
   return (
     <>
       <BookingStepper current="payment" query={q} />
       <PageIntro
-        eyebrow="Step 6"
+        eyebrow={locked ? "Step 5" : "Step 6"}
         title="Payment"
         lead="Secure checkout — demo card gateway records payment, generates invoice, and confirms the booking."
       />

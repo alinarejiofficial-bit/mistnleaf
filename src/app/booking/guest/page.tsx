@@ -33,12 +33,13 @@ export default async function BookingGuestPage({ searchParams }: Props) {
 
   const q = toQuery(query);
   const error = typeof params.error === "string" ? params.error : null;
+  const locked = query.locked === "1";
 
   return (
     <>
       <BookingStepper current="guest" query={q} />
       <PageIntro
-        eyebrow="Step 4"
+        eyebrow={locked ? "Step 3" : "Step 4"}
         title="Guest Information"
         lead="Tell us who is staying so we can prepare your arrival."
       />

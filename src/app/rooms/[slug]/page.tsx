@@ -30,7 +30,7 @@ export default async function RoomDetailPage({ params }: Props) {
   if (!room) notFound();
 
   const gallery = room.gallery.length > 0 ? room.gallery : [room.image];
-  const bookHref = `/booking/search?room=${room.slug}`;
+  const bookHref = `/booking/search?room=${room.slug}&locked=1`;
 
   return (
     <>
