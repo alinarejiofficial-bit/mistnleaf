@@ -71,6 +71,7 @@ export default async function BookingPaymentPage({ searchParams }: Props) {
               required
               defaultValue={query.name}
               className={fieldClass}
+              suppressHydrationWarning
             />
           </label>
           <label className="block text-sm text-muted">
@@ -81,6 +82,7 @@ export default async function BookingPaymentPage({ searchParams }: Props) {
               inputMode="numeric"
               placeholder="4242 4242 4242 4242"
               className={fieldClass}
+              suppressHydrationWarning
             />
           </label>
           <div className="grid grid-cols-2 gap-4">
@@ -91,6 +93,7 @@ export default async function BookingPaymentPage({ searchParams }: Props) {
                 required
                 placeholder="MM/YY"
                 className={fieldClass}
+                suppressHydrationWarning
               />
             </label>
             <label className="block text-sm text-muted">
@@ -100,6 +103,7 @@ export default async function BookingPaymentPage({ searchParams }: Props) {
                 required
                 placeholder="123"
                 className={fieldClass}
+                suppressHydrationWarning
               />
             </label>
           </div>

@@ -61,6 +61,7 @@ export default async function BookingGuestPage({ searchParams }: Props) {
                 required
                 defaultValue={query.name}
                 className={fieldClass}
+                suppressHydrationWarning
               />
             </label>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -72,6 +73,7 @@ export default async function BookingGuestPage({ searchParams }: Props) {
                   required
                   defaultValue={query.email}
                   className={fieldClass}
+                  suppressHydrationWarning
                 />
               </label>
               <label className="block text-sm text-muted">
@@ -80,6 +82,7 @@ export default async function BookingGuestPage({ searchParams }: Props) {
                   name="phone"
                   defaultValue={query.phone}
                   className={fieldClass}
+                  suppressHydrationWarning
                 />
               </label>
             </div>
@@ -91,6 +94,7 @@ export default async function BookingGuestPage({ searchParams }: Props) {
                 defaultValue={query.notes}
                 placeholder="Arrival time, celebrations, dietary needs…"
                 className={fieldClass}
+                suppressHydrationWarning
               />
             </label>
             <div className="flex flex-wrap gap-3 pt-2">
