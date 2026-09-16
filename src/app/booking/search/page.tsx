@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { BookingDateFields } from "@/components/booking/BookingDateFields";
+import { BookingGuestsField } from "@/components/booking/BookingGuestsField";
 import { BookingStepper } from "@/components/booking/BookingStepper";
-import {
-  fieldClass,
-  BookingSubmitButton,
-} from "@/components/booking/BookingUi";
+import { BookingSubmitButton } from "@/components/booking/BookingUi";
 import { PageIntro, Section } from "@/components/PageShell";
 import { param } from "@/lib/booking";
 import { goToAvailability } from "../actions";
@@ -20,6 +18,7 @@ export default async function BookingSearchPage({ searchParams }: Props) {
   const params = await searchParams;
   const error = param(params, "error");
   const room = param(params, "room");
+  const today = new Date().toISOString().slice(0, 10);
 
   return (
     <>
@@ -41,21 +40,11 @@ export default async function BookingSearchPage({ searchParams }: Props) {
             </p>
           ) : null}
           <BookingDateFields
+            today={today}
             initialCheckIn={param(params, "checkIn")}
             initialCheckOut={param(params, "checkOut")}
           />
-          <label className="block text-sm text-muted">
-            Guests
-            <input
-              type="number"
-              name="guests"
-              min={1}
-              max={6}
-              required
-              defaultValue={param(params, "guests", "2")}
-              className={fieldClass}
-            />
-          </label>
+          <BookingGuestsField defaultValue={param(params, "guests", "2")} />
           <BookingSubmitButton>Check availability</BookingSubmitButton>
         </form>
       </Section>

@@ -1,11 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { fieldClass } from "@/components/booking/BookingUi";
-
-function todayISO() {
-  return new Date().toISOString().slice(0, 10);
-}
 
 function addDaysISO(iso: string, days: number) {
   const date = new Date(`${iso}T12:00:00`);
@@ -14,17 +10,18 @@ function addDaysISO(iso: string, days: number) {
 }
 
 type BookingDateFieldsProps = {
+  today: string;
   initialCheckIn?: string;
   initialCheckOut?: string;
   fieldClassName?: string;
 };
 
 export function BookingDateFields({
+  today,
   initialCheckIn = "",
   initialCheckOut = "",
   fieldClassName = fieldClass,
 }: BookingDateFieldsProps) {
-  const today = useMemo(() => todayISO(), []);
   const [checkIn, setCheckIn] = useState(initialCheckIn);
   const [checkOut, setCheckOut] = useState(initialCheckOut);
 
@@ -51,6 +48,7 @@ export function BookingDateFields({
           value={checkIn}
           onChange={(event) => onCheckInChange(event.target.value)}
           className={fieldClassName}
+          suppressHydrationWarning
         />
       </label>
       <label className="block text-sm text-muted">
@@ -63,6 +61,7 @@ export function BookingDateFields({
           value={checkOut}
           onChange={(event) => setCheckOut(event.target.value)}
           className={fieldClassName}
+          suppressHydrationWarning
         />
       </label>
     </div>
