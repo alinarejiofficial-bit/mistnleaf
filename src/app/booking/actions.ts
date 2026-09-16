@@ -30,7 +30,7 @@ export async function goToAvailability(formData: FormData) {
   if (!requireSearch(query)) {
     redirect("/booking/search?error=dates");
   }
-  redirect(`/booking/availability?${toQuery(query)}`);
+  redirect(`/booking/select?${toQuery(query)}`);
 }
 
 export async function goToSelect(formData: FormData) {
@@ -134,6 +134,6 @@ export async function completePayment(formData: FormData) {
     ) {
       throw error;
     }
-    redirect(`/booking/availability?${toQuery(query)}&error=unavailable`);
+    redirect(`/booking/select?${toQuery(query)}&error=unavailable`);
   }
 }

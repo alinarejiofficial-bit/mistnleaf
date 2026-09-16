@@ -43,7 +43,7 @@ export default async function BookingPaymentPage({ searchParams }: Props) {
     <>
       <BookingStepper current="payment" query={q} />
       <PageIntro
-        eyebrow="Step 7"
+        eyebrow="Step 6"
         title="Payment"
         lead="Secure checkout — demo card gateway records payment, generates invoice, and confirms the booking."
       />

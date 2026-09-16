@@ -45,7 +45,7 @@ export default async function BookingSearchPage({ searchParams }: Props) {
             initialCheckOut={param(params, "checkOut")}
           />
           <BookingGuestsField defaultValue={param(params, "guests", "2")} />
-          <BookingSubmitButton>Check availability</BookingSubmitButton>
+          <BookingSubmitButton>Continue to rooms</BookingSubmitButton>
         </form>
       </Section>
     </>

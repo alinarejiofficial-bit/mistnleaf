@@ -43,7 +43,7 @@ export default async function BookingSummaryPage({ searchParams }: Props) {
     <>
       <BookingStepper current="summary" query={q} />
       <PageIntro
-        eyebrow="Step 6"
+        eyebrow="Step 5"
         title="Price Calculation"
         lead="Review your stay total before payment."
       />

@@ -38,7 +38,7 @@ export default async function BookingGuestPage({ searchParams }: Props) {
     <>
       <BookingStepper current="guest" query={q} />
       <PageIntro
-        eyebrow="Step 5"
+        eyebrow="Step 4"
         title="Guest Information"
         lead="Tell us who is staying so we can prepare your arrival."
       />

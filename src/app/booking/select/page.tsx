@@ -32,14 +32,14 @@ export default async function BookingSelectPage({ searchParams }: Props) {
   const q = toQuery(query);
 
   if (options.length === 0) {
-    redirect(`/booking/availability?${q}`);
+    redirect(`/booking/search?${q}&error=dates`);
   }
 
   return (
     <>
       <BookingStepper current="select" query={q} />
       <PageIntro
-        eyebrow="Step 3"
+        eyebrow="Step 2"
         title="Select Room Type"
         lead="Choose the room that fits your stay. Pricing is shown for your selected nights."
       />
@@ -47,7 +47,7 @@ export default async function BookingSelectPage({ searchParams }: Props) {
         <RoomSelectForm
           query={query}
           options={options}
-          backHref={`/booking/availability?${q}`}
+          backHref={`/booking/search?${q}`}
           action={goToAddons}
         />
       </Section>

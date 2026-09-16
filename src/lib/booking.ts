@@ -4,12 +4,6 @@ import { db } from "@/lib/store/db";
 export const bookingSteps = [
   { key: "search", label: "Search", shortLabel: "Search", href: "/booking/search" },
   {
-    key: "availability",
-    label: "Availability",
-    shortLabel: "Dates",
-    href: "/booking/availability",
-  },
-  {
     key: "select",
     label: "Room Selection",
     shortLabel: "Room",

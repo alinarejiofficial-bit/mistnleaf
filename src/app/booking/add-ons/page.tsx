@@ -38,7 +38,7 @@ export default async function BookingAddonsPage({ searchParams }: Props) {
     <>
       <BookingStepper current="addons" query={q} />
       <PageIntro
-        eyebrow="Step 4"
+        eyebrow="Step 3"
         title="Packages & Add-ons"
         lead="Optional extras for your stay. Continue without selecting any if you prefer."
       />
