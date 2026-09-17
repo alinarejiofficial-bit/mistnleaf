@@ -30,10 +30,10 @@ export const staffUsers: StaffUser[] = [
   },
   {
     id: "u-hk",
-    name: "Latha Krishnan",
-    email: "housekeeping@mistnleaf.demo",
+    name: "Ravi Kumar",
+    email: "ravi@mistnleaf.com",
     role: "housekeeping",
-    password: "hk123",
+    password: "Staff@123",
   },
 ];
 

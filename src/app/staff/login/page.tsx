@@ -55,7 +55,7 @@ export default async function StaffLoginPage({ searchParams }: Props) {
           <p>Demo accounts:</p>
           <p>manager@mistnleaf.demo / manager123</p>
           <p>frontdesk@mistnleaf.demo / desk123</p>
-          <p>housekeeping@mistnleaf.demo / hk123</p>
+          <p>ravi@mistnleaf.com / Staff@123</p>
         </div>
         <Link href="/" className="mt-6 inline-block text-sm text-[#1f332b]">
           ← Back to website
