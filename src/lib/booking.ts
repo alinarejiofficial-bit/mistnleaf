@@ -99,8 +99,8 @@ export function nightsBetween(checkIn: string, checkOut: string) {
   const end = parseDateOnly(checkOut);
   if (!start || !end) return 0;
   const diff = end.getTime() - start.getTime();
-  if (diff <= 0) return 0;
-  return Math.round(diff / (1000 * 60 * 60 * 24));
+  if (diff < 0) return 0;
+  return Math.max(Math.round(diff / (1000 * 60 * 60 * 24)), 1);
 }
 
 function parseDateOnly(iso: string) {
@@ -181,6 +181,14 @@ export function getAvailability(
   return rooms.map((room) => {
     const typeId = roomSlugToTypeId[room.slug];
     const fits = room.guests >= guests && nights > 0;
+    const stayEnd =
+      checkOut > checkIn
+        ? checkOut
+        : (() => {
+            const d = new Date(`${checkIn}T12:00:00`);
+            d.setDate(d.getDate() + 1);
+            return d.toISOString().slice(0, 10);
+          })();
     const unitsOpen = typeId
       ? store.roomUnits.filter(
           (u) =>
@@ -190,7 +198,15 @@ export function getAvailability(
               if (b.roomUnitId !== u.id) return false;
               if (b.status === "cancelled" || b.status === "checked_out")
                 return false;
-              return checkIn < b.checkOut && b.checkIn < checkOut;
+              const bookingEnd =
+                b.checkOut > b.checkIn
+                  ? b.checkOut
+                  : (() => {
+                      const d = new Date(`${b.checkIn}T12:00:00`);
+                      d.setDate(d.getDate() + 1);
+                      return d.toISOString().slice(0, 10);
+                    })();
+              return checkIn < bookingEnd && b.checkIn < stayEnd;
             }),
         ).length
       : 0;

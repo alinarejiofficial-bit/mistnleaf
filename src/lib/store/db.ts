@@ -78,6 +78,16 @@ export function getStaffById(id: string) {
   return staffUsers.find((u) => u.id === id) ?? null;
 }
 
+function dayAfter(iso: string) {
+  const date = new Date(`${iso}T12:00:00`);
+  date.setDate(date.getDate() + 1);
+  return date.toISOString().slice(0, 10);
+}
+
+function exclusiveStayEnd(checkIn: string, checkOut: string) {
+  return checkOut > checkIn ? checkOut : dayAfter(checkIn);
+}
+
 function overlaps(aStart: string, aEnd: string, bStart: string, bEnd: string) {
   return aStart < bEnd && bStart < aEnd;
 }
@@ -86,8 +96,8 @@ export function nightsBetween(checkIn: string, checkOut: string) {
   const start = new Date(checkIn);
   const end = new Date(checkOut);
   const diff = end.getTime() - start.getTime();
-  if (Number.isNaN(diff) || diff <= 0) return 0;
-  return Math.round(diff / (1000 * 60 * 60 * 24));
+  if (Number.isNaN(diff) || diff < 0) return 0;
+  return Math.max(Math.round(diff / (1000 * 60 * 60 * 24)), 1);
 }
 
 /** Prevent double bookings for a concrete room unit over date range. */
@@ -97,12 +107,19 @@ export function isUnitAvailable(
   checkOut: string,
   ignoreBookingId?: string,
 ) {
+  if (!checkIn || !checkOut || checkOut < checkIn) return false;
   const store = db();
+  const stayEnd = exclusiveStayEnd(checkIn, checkOut);
   return !store.bookings.some((b) => {
     if (ignoreBookingId && b.id === ignoreBookingId) return false;
     if (b.roomUnitId !== roomUnitId) return false;
     if (b.status === "cancelled" || b.status === "checked_out") return false;
-    return overlaps(checkIn, checkOut, b.checkIn, b.checkOut);
+    return overlaps(
+      checkIn,
+      stayEnd,
+      b.checkIn,
+      exclusiveStayEnd(b.checkIn, b.checkOut),
+    );
   });
 }
 

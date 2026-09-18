@@ -3,12 +3,6 @@
 import { useState } from "react";
 import { fieldClass } from "@/components/booking/BookingUi";
 
-function addDaysISO(iso: string, days: number) {
-  const date = new Date(`${iso}T12:00:00`);
-  date.setDate(date.getDate() + days);
-  return date.toISOString().slice(0, 10);
-}
-
 type BookingDateFieldsProps = {
   today: string;
   initialCheckIn?: string;
@@ -25,14 +19,13 @@ export function BookingDateFields({
   const [checkIn, setCheckIn] = useState(initialCheckIn);
   const [checkOut, setCheckOut] = useState(initialCheckOut);
 
-  const minCheckOut = checkIn ? addDaysISO(checkIn, 1) : addDaysISO(today, 1);
+  const minCheckOut = checkIn || today;
 
   function onCheckInChange(value: string) {
     setCheckIn(value);
     if (!value) return;
-    const nextMin = addDaysISO(value, 1);
-    if (!checkOut || checkOut <= value) {
-      setCheckOut(nextMin);
+    if (!checkOut || checkOut < value) {
+      setCheckOut(value);
     }
   }
 

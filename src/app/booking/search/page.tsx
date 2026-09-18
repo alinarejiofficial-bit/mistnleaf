@@ -51,7 +51,7 @@ export default async function BookingSearchPage({ searchParams }: Props) {
           {locked ? <input type="hidden" name="locked" value="1" /> : null}
           {error === "dates" ? (
             <p className="border border-line bg-mist px-4 py-3 text-sm text-pine">
-              Please select a check-out date that is after check-in.
+              Please select a check-out on or after check-in.
             </p>
           ) : null}
           {error === "unavailable" ? (

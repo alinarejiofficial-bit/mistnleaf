@@ -6,12 +6,6 @@ function todayISO() {
   return new Date().toISOString().slice(0, 10);
 }
 
-function addDaysISO(iso: string, days: number) {
-  const date = new Date(`${iso}T12:00:00`);
-  date.setDate(date.getDate() + days);
-  return date.toISOString().slice(0, 10);
-}
-
 const fieldClass =
   "mt-1 w-full border border-[#d7dbd6] px-3 py-2 text-sm normal-case tracking-normal";
 
@@ -27,14 +21,13 @@ export function StaffBookingDateFields({
   const today = useMemo(() => todayISO(), []);
   const [checkIn, setCheckIn] = useState(initialCheckIn);
   const [checkOut, setCheckOut] = useState(initialCheckOut);
-  const minCheckOut = checkIn ? addDaysISO(checkIn, 1) : addDaysISO(today, 1);
+  const minCheckOut = checkIn || today;
 
   function onCheckInChange(value: string) {
     setCheckIn(value);
     if (!value) return;
-    const nextMin = addDaysISO(value, 1);
-    if (!checkOut || checkOut <= value) {
-      setCheckOut(nextMin);
+    if (!checkOut || checkOut < value) {
+      setCheckOut(value);
     }
   }
 
